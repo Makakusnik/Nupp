@@ -21,7 +21,7 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
 
 ### To Do
 
-- [x] Project Brief [^1]
+- [x] [Project Brief](/Project Brief.md) [^1]
   - [x]  Website Overview
   - [x]  Project Goals
   - [x]  Target Audience
