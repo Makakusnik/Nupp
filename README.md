@@ -21,7 +21,7 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
 
 ### To Do
 
-- [x] [Project Brief](Project Brief.md) [^1]
+- [x] [Project Brief](./Project%20Brief.md) [^1]
   - [x]  Website Overview
   - [x]  Project Goals
   - [x]  Target Audience
@@ -31,8 +31,20 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
   - [x]  Project Deliverables
   - [x]  Hosting
 
+- [ ]  [Website structure detailed](./Website%20Structure.md)
+  - [ ] Homepage
+  - [ ] Profile
+    - [ ] [ID]
+    - [ ] Settings
+  - [ ] Diets
+    - [ ] Add
+    - [ ] [ID] [^*]
+  - [ ] Food
+    - [ ] [ID] [^*]
+    - [ ] Add
+
 - [ ]  Designing [^2]
-  - [ ]  Create Sitemap [^3]
+  - [x]  Create [Sitemap](./sitemap.png) [^3]
   - [ ]  Sketches
   - [ ]  Wireframes 
   - [ ]  UI Design 
@@ -42,3 +54,4 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
 [^1]: Will use this [design brief template](https://elementor.com/blog/wp-content/uploads/sites/9/2020/09/Website-Design-Brief-Template.pdf)
 [^2]: You will find it [here](https://www.figma.com/file/iTka7dTUJdWCeK5Ma5bU0u/Nupp-Wireframes)
 [^3]: Will be done in [Gloomaps](https://www.gloomaps.com/)
+[^*]: Parameter - not sublevel address
