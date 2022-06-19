@@ -87,4 +87,6 @@ This will only server as approximation timeline which I will do my best to accom
    7. UI Design - Finished - 10.7.2022
 3. Coding - Start - 11.7.2022
 
+## Hosting & Maintenance
 
+Hosting will be provided by hostinger for website and mongodb free plan for database, If needed, I will upgrade both of plans.
