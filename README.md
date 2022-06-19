@@ -6,9 +6,16 @@ Goal of my Nupp is to help you spend less, eat healthier, organize and improve y
 
 ## Current State
 
-Application is at the beginning. I want to explore whole proccess of making web application from project brief through wireframes, UX design, UI design to coding frontend, backend.
+Application is at the beginning. 
+I want to explore whole proccess of making web application that means:
+ -  Project brief
+ -  UX design / Wireframes
+ -  UI design / Mockups
+ -  Designing Database schemas
+ -  Coding
+ -  Server administration / maintenance
 
-I will share here project brief, link to wireframes, link to design and also I will share my database schemas here.
+I will share project brief, link to wireframes, link to design and also database schemas here.
 
 Keep in mind I am pre-junior developer, I have no corporate experience so there may be lot of mistakes, but hey, without mistakes there's no progress. :smirk:
 
