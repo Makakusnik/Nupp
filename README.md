@@ -21,15 +21,15 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
 
 ### To Do
 
-- [ ] Project Brief [^1]
-  - [ ]  Website Overview
-  - [ ]  Project Goals
-  - [ ]  Target Audience
-  - [ ]  Competitors / Similiar projects
-  - [ ]  Design Reqs and Specs
-  - [ ]  Approximate Timeline
-  - [ ]  Project Deliverables
-  - [ ]  Hosting
+- [x] Project Brief [^1]
+  - [x]  Website Overview
+  - [x]  Project Goals
+  - [x]  Target Audience
+  - [x]  Competitors / Similiar projects
+  - [x]  Design Reqs and Specs
+  - [x]  Approximate Timeline
+  - [x]  Project Deliverables
+  - [x]  Hosting
 
 - [ ]  Designing [^2]
   - [ ]  Create Sitemap [^3]
