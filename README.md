@@ -31,17 +31,19 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
   - [x]  Project Deliverables
   - [x]  Hosting
 
-- [ ]  [Website structure detailed](./Website%20Structure.md)
-  - [ ] Homepage
-  - [ ] Profile
-    - [ ] [ID]
-    - [ ] Settings
-  - [ ] Diets
-    - [ ] Add
-    - [ ] [ID] [^*]
-  - [ ] Food
-    - [ ] [ID] [^*]
-    - [ ] Add
+- [x]  [Website structure detailed](./Website%20Structure.md)
+  - [x] Homepage
+  - [x] Profile
+    - [x] [ID]
+    - [x] Settings
+  - [x] Diets
+    - [x] Add
+    - [x] [ID] [^*]
+  - [x] Food
+    - [x] [ID] [^*]
+    - [x] Add
+
+- [ ] Website Structure Revision
 
 - [ ]  Designing [^2]
   - [x]  Create [Sitemap](./sitemap.png) [^3]
