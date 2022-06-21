@@ -47,8 +47,8 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
 
 - [ ]  Designing [^2]
   - [x]  Create [Sitemap](./sitemap.png) [^3]
-  - [ ]  Sketches
   - [ ]  Wireframes 
+  - [ ]  UI Sketches
   - [ ]  UI Design 
 
 - [ ] Coding   
