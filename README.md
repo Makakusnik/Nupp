@@ -44,20 +44,19 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
     - [x] Add
 
 - [ ] Website Structure Revision
-
-- [ ]  Designing [^2]
-  - [x]  Create [Sitemap](./sitemap.png) [^3]
-  - [ ]  Wireframes 
-   - [x] Homepage
-   - [x] Diets
-     - [x] Add
-     - [x] [ID] [^*]
-   - [ ] Products
-     - [ ] [ID] [^*]
-     - [ ] Add
-   - [ ] Profile
-     - [ ] [ID]
-     - [ ] Settings
+- [ ] Designing [^2]
+  - [x] Create [Sitemap](./sitemap.png) [^3]
+  - [ ] Wireframes
+    - [x] Homepage
+    - [x] Diets
+      - [x] Add
+      - [x] [ID] [^*]
+    - [ ] Products
+      - [ ] [ID] [^*]
+      - [ ] Add
+    - [ ] Profile
+      - [ ] [ID]
+      - [ ] Settings
    
   - [ ]  ~~UI Sketches~~
   - [ ]  UI Design 
