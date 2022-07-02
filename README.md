@@ -5,12 +5,13 @@ Nupp is application made for tracking macro nutrients and costs of diet plans, l
 Goal of my Nupp is to help you spend less, eat healthier, organize and improve your eating habits.
 
 ## Current State
+**Currently** I Am designing Wireframes. You can check them out in [my figma profile](https://www.figma.com/file/iTka7dTUJdWCeK5Ma5bU0u/Nupp-Wireframes)
 
 Application is at the beginning. 
 I want to explore whole proccess of making web application that means:
  -  Project brief
  -  UX design / Wireframes
- -  UI design / Mockups
+ -  UI design
  -  Designing Database schemas
  -  Coding
  -  Server administration / maintenance
