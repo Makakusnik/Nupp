@@ -52,9 +52,9 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
     - [x] Diets
       - [x] Add
       - [x] [ID] [^*]
-    - [ ] Products
-      - [ ] [ID] [^*]
-      - [ ] Add
+    - [x] Products
+      - [x] [ID] [^*]
+      - [x] Add
     - [ ] Profile
       - [ ] [ID]
       - [ ] Settings
