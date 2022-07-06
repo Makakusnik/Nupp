@@ -13,17 +13,20 @@ import {
   Spacer,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import NextLink from "next/link";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { MdSettings } from "react-icons/md";
-import { JsxElement } from "typescript";
+import { BsMoonStarsFill, BsSunFill, BsFillPersonFill } from "react-icons/bs";
 import { NavigationLink } from "./Links";
 
 interface NavProps {}
 
 export const NavigationBar = ({}: NavProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex
       h={"88px"}
@@ -45,9 +48,20 @@ export const NavigationBar = ({}: NavProps) => {
         </HStack>
       </HStack>
       <SearchBar />
-      <HStack>
+      <HStack spacing={"16px"}>
+        <IconButton
+          aria-label="Toggle light dark mode"
+          onClick={toggleColorMode}
+          icon={
+            colorMode === "light" ? (
+              <Box as={BsMoonStarsFill} size="24px" color="purple.700" />
+            ) : (
+              <Box as={BsSunFill} size="24px" color="yellow.400" />
+            )
+          }
+        />
         <IconButton aria-label="Log In">
-          <Box as={MdSettings} size="16px" color="green.400"></Box>
+          <Box as={BsFillPersonFill} size="24px" color="green.400"></Box>
         </IconButton>
       </HStack>
     </Flex>
@@ -58,24 +72,36 @@ const SearchBar = () => {
   const [isDietSearch, setDietSearch] = useState<boolean>();
   const [isFoodSearch, setFoodSearch] = useState<boolean>();
   const [isSearchingState, setSearchingState] = useState<boolean>();
+
+  /** inputRef is used for referencing Input field and to read input from it**/
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [searchQuery, setSearchQuery] = useState<string>();
-
+  /**
+   * Resets searching bar to default state.
+   *
+   * **/
   const handleLostFocus = (e: SyntheticEvent) => {
-    setSearchingState(false);
-    setDietSearch(false);
-    setFoodSearch(false);
+    if (inputRef.current && inputRef.current.value === "") {
+      setSearchingState(false);
+      setDietSearch(false);
+      setFoodSearch(false);
+    }
   };
 
-  // Sets diet search state.
+  /**
+   * Handles click on Diet button.
+   * **/
   const handleClickDietButton = () => {
+    setFoodSearch(false);
     setDietSearch(true);
     setSearchingState(true);
   };
 
-  // Sets food search state on
+  /**
+   * Handles click on Food button.
+   * **/
   const handleClickFoodButton = () => {
+    setDietSearch(false);
     setFoodSearch(true);
     setSearchingState(true);
   };
@@ -89,9 +115,17 @@ const SearchBar = () => {
   return (
     <HStack marginRight={["0px", "0px", "8px", "80px", "144px"]}>
       <InputGroup>
+        {/*
+         *  Changes post-fix of Left Searchbar Addon
+         *  isSearchingState -> Informs about state of searchbar
+         *  isDietSearch -> Informs about which state has been chosen
+         */}
         <InputLeftAddon bg={"gray.400"}>{`Search For ${
           isSearchingState ? (isDietSearch ? "Diet plan" : "Product") : ""
         } :`}</InputLeftAddon>
+        {/**
+         * Hides Button Group when isSearchingState is true
+         **/}
         <ButtonGroup hidden={isSearchingState}>
           <HStack spacing={0}>
             <Button onClick={handleClickDietButton} borderRadius={0}>
@@ -105,10 +139,8 @@ const SearchBar = () => {
             </Button>
           </HStack>
         </ButtonGroup>
-        {/* Tuto je hidden, prerobiť na state*/}
         <Input
           ref={inputRef}
-          autoFocus={true}
           hidden={!isSearchingState}
           onBlur={handleLostFocus}
           type="search"
