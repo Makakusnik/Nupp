@@ -10,7 +10,7 @@ interface NavLinkProps {
 export const NavigationLink = ({ href, children }: NavLinkProps) => (
   <NextLink href={href} passHref={true}>
     <LinkWrap>
-      <Link _hover={{}} fontFamily="Lato" fontWeight={700}>
+      <Link _hover={{}} fontWeight={500}>
         {children}
       </Link>
     </LinkWrap>
