@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { DatabaseTable } from "../components/Database/DatabaseTable";
 import { BlobAnimated } from "../components/misc/BlobVector";
 import { NavigationBar } from "../components/navigation/NavigationBar";
 
@@ -71,6 +72,9 @@ const Home: NextPage = () => {
             </VStack>
           </HStack>
         </Container>
+      </Container>
+      <Container marginTop={"80px"} px="32px" maxW="container.lg">
+        <DatabaseTable></DatabaseTable>
       </Container>
     </Container>
   );
