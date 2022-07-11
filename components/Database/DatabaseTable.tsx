@@ -2,7 +2,6 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
@@ -10,28 +9,13 @@ import {
   TableContainer,
   Box,
   IconButton,
-  VStack,
 } from "@chakra-ui/react";
-import Error from "next/error";
-import { MdAdd, MdOutlineFavoriteBorder, MdLink } from "react-icons/md";
-import { data, Data, Brand, Recipe, SecondaryData } from "../../testdata/data";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { data, Data } from "../../testdata/data";
+import { DataTableLink } from "../navigation/Links";
 
-const formatSecondaryData = (data: SecondaryData) => {
-  console.log("Executed");
-  if ((typeof data as SecondaryData) === "Brand") {
-    console.log("Returning Brand");
-    return <span style={{ color: "gray", fontSize: "12px" }}>{data}</span>;
-  }
-  if ((typeof data as SecondaryData) === "Recipe") {
-    console.log("Returning Recipe");
-    return (
-      <span style={{ color: "gray", fontSize: "12px" }}>
-        {data}
-        <Box marginLeft="8px" size="xs" as={MdLink}></Box>
-      </span>
-    );
-  }
-  console.log(typeof data);
+const formatSecondaryData = (data: string) => {
+  return <DataTableLink href="#">{data}</DataTableLink>;
 };
 
 export const DatabaseTable = () => {
@@ -41,314 +25,67 @@ export const DatabaseTable = () => {
         <TableCaption>Grocery database from Slovak grocery shops</TableCaption>
         <Thead>
           <Tr>
-            <Th>
-              Name{" "}
-              <span style={{ color: "gray", fontSize: "10px" }}>
-                <br></br>
-                brand / Recipe
-              </span>
-            </Th>
-            <Th textAlign="center">
-              Energy<br></br>
-              <span style={{ color: "gray", fontSize: "10px" }}>g / 100 g</span>
-            </Th>
-            <Th textAlign="center">
-              Fats<br></br>
-              <span style={{ color: "gray", fontSize: "10px" }}>g / 100 g</span>
-            </Th>
-            <Th textAlign="center">
-              Carbs<br></br>
-              <span style={{ color: "gray", fontSize: "10px" }}>g / 100 g</span>
-            </Th>
-            <Th textAlign="center">
-              Proteins<br></br>
-              <span style={{ color: "gray", fontSize: "10px" }}>g / 100 g</span>
-            </Th>
-            <Th textAlign="center">
-              Salt<br></br>
-              <span style={{ color: "gray", fontSize: "10px" }}>g / 100 g</span>
-            </Th>
-            <Th>Avg. Price</Th>
+            <TableHead title="Name" details="Brand / Recipe Link" />
+            <TableHead title="Energy" details="g / 100 g" align={true} />
+            <TableHead title="Fats" details="g / 100 g" align={true} />
+            <TableHead title="Carbs" details="g / 100 g" align={true} />
+            <TableHead title="Proteins" details="g / 100 g" align={true} />
+            <TableHead title="Salt" details="g / 100 g" align={true} />
+            <TableHead title="Avg. Price" details="$" align={true} />
           </Tr>
         </Thead>
         <Tbody>
           {data.map((item: Data, index: number) => {
-            return (
-              <Tr key={index}>
-                <Td>
-                  {item.name}
-
-                  <IconButton
-                    marginLeft="8px"
-                    size="xs"
-                    aria-label="Add Product To Favorits"
-                  >
-                    <Box as={MdOutlineFavoriteBorder}></Box>
-                  </IconButton>
-                  <br></br>
-                  {formatSecondaryData(item.secondaryData)}
-                </Td>
-              </Tr>
-            );
+            return <FormatedTableRow item={item} key={index} />;
           })}
-          <Tr>
-            <Td>
-              Tuniakový šalát
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>Rio Mare</span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Tuniakový šalát
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>Rio Mare</span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Tuniakový šalát
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>Rio Mare</span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Tuniakový šalát
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>Rio Mare</span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              Chilli Con Carne Bardzo Fajne
-              <IconButton
-                marginLeft="8px"
-                size="xs"
-                aria-label="Add Product To Favorits"
-              >
-                <Box as={MdOutlineFavoriteBorder}></Box>
-              </IconButton>
-              <br></br>
-              <span style={{ color: "gray", fontSize: "12px" }}>
-                Ochujeny Recept
-              </span>
-            </Td>
-            <Td isNumeric>250</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
         </Tbody>
       </Table>
     </TableContainer>
+  );
+};
+
+interface TableRowProps {
+  item: Data;
+}
+
+const FormatedTableRow = ({ item }: TableRowProps) => {
+  return (
+    <Tr>
+      <Td>
+        {item.name}
+
+        <IconButton
+          marginLeft="8px"
+          size="xs"
+          aria-label="Add Product To Favorits"
+        >
+          <Box as={MdOutlineFavoriteBorder}></Box>
+        </IconButton>
+        <br></br>
+        {formatSecondaryData(item.secondaryData)}
+      </Td>
+      <Td isNumeric>250</Td>
+      <Td isNumeric>25.4</Td>
+      <Td isNumeric>25.4</Td>
+      <Td isNumeric>25.4</Td>
+      <Td isNumeric>25.4</Td>
+      <Td isNumeric>25.4</Td>
+    </Tr>
+  );
+};
+
+interface TableHeadProps {
+  title: string;
+  details: string;
+  align?: boolean;
+}
+
+const TableHead = ({ title, details, align }: TableHeadProps) => {
+  return (
+    <Th textAlign={align ? "center" : "left"}>
+      {title}
+      <br></br>
+      <span style={{ color: "gray", fontSize: "10px" }}>{details}</span>
+    </Th>
   );
 };
