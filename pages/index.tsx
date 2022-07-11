@@ -8,6 +8,7 @@ import {
   Heading,
   HStack,
   Text,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
@@ -17,8 +18,10 @@ import { BlobAnimated } from "../components/misc/BlobVector";
 import { NavigationBar } from "../components/navigation/NavigationBar";
 
 const Home: NextPage = () => {
+  const headerBg = useColorModeValue("gray.50", "gray.900");
+
   return (
-    <Container p="0" w="100%" minW="100%">
+    <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
       <Head>
         <title>Nupp | Diet Tracker</title>
         <meta
@@ -27,7 +30,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container p="0" minW="100%" h={"fit-content"} bg="gray.100">
+      <Container p="0" minW="100%" h={"fit-content"} bg={headerBg}>
         <Container maxW="container.lg">
           <HStack>
             <VStack alignItems="start" spacing="48px" p={"16"} h="100%" w="50%">
