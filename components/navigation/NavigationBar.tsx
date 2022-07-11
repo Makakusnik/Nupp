@@ -10,32 +10,64 @@ import {
   InputGroup,
   InputLeftAddon,
   Link,
-  Spacer,
-  Stack,
-  Text,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import styled from "@emotion/styled";
 import NextLink from "next/link";
-import { SyntheticEvent, useEffect, useRef, useState } from "react";
-import { MdSettings } from "react-icons/md";
+import {
+  SyntheticEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { BsMoonStarsFill, BsSunFill, BsFillPersonFill } from "react-icons/bs";
 import { NavigationLink } from "./Links";
 
-interface NavProps {}
-
-export const NavigationBar = ({}: NavProps) => {
+export const NavigationBar = () => {
+  const [height, setHeight] = useState<string>("88px");
+  const [backgroundOpacity, setBackgroundOpacity] = useState<number>(100);
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const barBg = useColorModeValue("gray.100", "gray.900");
+
+  useEffect(() => {
+    const handleScroll = (e: Event) => {
+      setBackgroundOpacity(window.scrollY < 120 ? window.scrollY / 200 : 1);
+      setHeight(window.scrollY < 150 ? "88px" : "64px");
+    };
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [backgroundOpacity]);
 
   return (
     <Flex
-      h={"88px"}
+      transition="height 0.5s ease-in-out"
+      h={height}
       p={{ lg: "4px 64px", md: "4px 16px" }}
       columnGap={"8px"}
       alignContent={"center"}
       justifyContent="space-between"
+      position="fixed"
+      w="100%"
+      zIndex="1"
+      _before={{
+        transition: "opacity 0.5s ease-in-out",
+        content: '""',
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundColor: barBg,
+        zIndex: "0",
+        left: "0",
+        top: "0",
+        opacity: backgroundOpacity,
+      }}
     >
-      <HStack spacing="48px">
+      <HStack spacing="48px" zIndex="1">
         <Center>
           <NextLink href="/" passHref>
             <Link>NUPP</Link>
@@ -78,8 +110,7 @@ const SearchBar = () => {
 
   /**
    * Resets searching bar to default state.
-   *
-   * **/
+   * */
   const handleLostFocus = (e: SyntheticEvent) => {
     if (inputRef.current && inputRef.current.value === "") {
       setSearchingState(false);
@@ -88,18 +119,12 @@ const SearchBar = () => {
     }
   };
 
-  /**
-   * Handles click on Diet button.
-   * **/
   const handleClickDietButton = () => {
     setFoodSearch(false);
     setDietSearch(true);
     setSearchingState(true);
   };
 
-  /**
-   * Handles click on Food button.
-   * **/
   const handleClickFoodButton = () => {
     setDietSearch(false);
     setFoodSearch(true);
