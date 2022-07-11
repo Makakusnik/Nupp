@@ -1,10 +1,6 @@
-export type Brand = string;
-export type Recipe = string;
-export type SecondaryData = Brand | Recipe;
-
 export interface Data {
   name: string;
-  secondaryData: SecondaryData;
+  secondaryData: string;
   energy: number;
   fats: number;
   carbs: number;
@@ -16,7 +12,7 @@ export interface Data {
 export var data: Data[] = [
   {
     name: "Shay Whitaker",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1522,
     fats: 524,
     carbs: 213,
@@ -26,7 +22,7 @@ export var data: Data[] = [
   },
   {
     name: "Samson Park",
-    secondaryData: "Fakapple" as Brand,
+    secondaryData: "Fakapple",
     energy: 429,
     fats: 1166,
     carbs: 44,
@@ -36,7 +32,7 @@ export var data: Data[] = [
   },
   {
     name: "Wyoming Weber",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 474,
     fats: 1042,
     carbs: 1462,
@@ -46,7 +42,7 @@ export var data: Data[] = [
   },
   {
     name: "Emma Horn",
-    secondaryData: "GayHouse" as Brand,
+    secondaryData: "GayHouse",
     energy: 1990,
     fats: 1900,
     carbs: 561,
@@ -56,7 +52,7 @@ export var data: Data[] = [
   },
   {
     name: "Fritz Lowery",
-    secondaryData: "FritziPiči" as Brand,
+    secondaryData: "FritziPiči",
     energy: 624,
     fats: 365,
     carbs: 1999,
@@ -66,7 +62,7 @@ export var data: Data[] = [
   },
   {
     name: "Wylie Greer",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 669,
     fats: 785,
     carbs: 1361,
@@ -76,7 +72,7 @@ export var data: Data[] = [
   },
   {
     name: "Nita Ochoa",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1085,
     fats: 498,
     carbs: 1801,
@@ -86,7 +82,7 @@ export var data: Data[] = [
   },
   {
     name: "Honorato Petersen",
-    secondaryData: "StalinIsCuck" as Brand,
+    secondaryData: "StalinIsCuck",
     energy: 1273,
     fats: 847,
     carbs: 1994,
@@ -96,7 +92,7 @@ export var data: Data[] = [
   },
   {
     name: "Brynne Benson",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1993,
     fats: 193,
     carbs: 1182,
@@ -106,7 +102,7 @@ export var data: Data[] = [
   },
   {
     name: "Carissa Battle",
-    secondaryData: "PutinsRussy" as Brand,
+    secondaryData: "PutinsRussy",
     energy: 1357,
     fats: 1007,
     carbs: 1039,
@@ -116,7 +112,7 @@ export var data: Data[] = [
   },
   {
     name: "Zelda Butler",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 899,
     fats: 878,
     carbs: 1826,
@@ -126,7 +122,7 @@ export var data: Data[] = [
   },
   {
     name: "Karleigh Fisher",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1235,
     fats: 231,
     carbs: 588,
@@ -136,7 +132,7 @@ export var data: Data[] = [
   },
   {
     name: "Aretha Scott",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 64,
     fats: 979,
     carbs: 1466,
@@ -146,7 +142,7 @@ export var data: Data[] = [
   },
   {
     name: "Iris Garcia",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 62,
     fats: 1024,
     carbs: 659,
@@ -156,7 +152,7 @@ export var data: Data[] = [
   },
   {
     name: "Shoshana Daniels",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 948,
     fats: 560,
     carbs: 1572,
@@ -166,7 +162,7 @@ export var data: Data[] = [
   },
   {
     name: "Oscar Baxter",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 117,
     fats: 1661,
     carbs: 389,
@@ -176,7 +172,7 @@ export var data: Data[] = [
   },
   {
     name: "Keaton Roach",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 535,
     fats: 1338,
     carbs: 1330,
@@ -186,7 +182,7 @@ export var data: Data[] = [
   },
   {
     name: "Anjolie Mills",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 139,
     fats: 636,
     carbs: 1071,
@@ -196,7 +192,7 @@ export var data: Data[] = [
   },
   {
     name: "Bruce Snyder",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1629,
     fats: 1078,
     carbs: 704,
@@ -206,7 +202,7 @@ export var data: Data[] = [
   },
   {
     name: "Aurelia Richard",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 396,
     fats: 2000,
     carbs: 1909,
@@ -216,7 +212,7 @@ export var data: Data[] = [
   },
   {
     name: "Emery Frazier",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1702,
     fats: 0,
     carbs: 510,
@@ -226,7 +222,7 @@ export var data: Data[] = [
   },
   {
     name: "Luke Simpson",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 296,
     fats: 948,
     carbs: 1885,
@@ -236,7 +232,7 @@ export var data: Data[] = [
   },
   {
     name: "Clinton Avery",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1682,
     fats: 1194,
     carbs: 1023,
@@ -246,7 +242,7 @@ export var data: Data[] = [
   },
   {
     name: "Craig Byrd",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 750,
     fats: 694,
     carbs: 1027,
@@ -256,7 +252,7 @@ export var data: Data[] = [
   },
   {
     name: "Bradley Donovan",
-    secondaryData: "ShitStain" as Recipe,
+    secondaryData: "ShitStain",
     energy: 1215,
     fats: 127,
     carbs: 1142,
