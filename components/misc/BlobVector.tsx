@@ -27,6 +27,7 @@ const Svg = styled.svg<SvgElementProps>`
   bottom: ${({ bottom }) => bottom};
   right: ${({ right }) => right};
   top: ${({ top }) => top};
+  z-index: 0;
 `;
 
 export const BlobAnimated = ({
