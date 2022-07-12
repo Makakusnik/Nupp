@@ -20,7 +20,7 @@ const formatSecondaryData = (data: string) => {
 
 export const DatabaseTable = () => {
   return (
-    <TableContainer>
+    <TableContainer marginTop='40px'>
       <Table variant="simple">
         <TableCaption>Grocery database from Slovak grocery shops</TableCaption>
         <Thead>

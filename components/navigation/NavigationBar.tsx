@@ -53,7 +53,7 @@ export const NavigationBar = () => {
       justifyContent="space-between"
       position="fixed"
       w="100%"
-      zIndex="1"
+      zIndex="9999"
       _before={{
         transition: "opacity 0.5s ease-in-out",
         content: '""',
