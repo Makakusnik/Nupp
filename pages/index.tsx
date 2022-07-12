@@ -14,6 +14,7 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import { DatabaseTable } from "../components/Database/DatabaseTable";
+import { FilterBox } from "../components/Database/Filters";
 import { BlobAnimated } from "../components/misc/BlobVector";
 import { NavigationBar } from "../components/navigation/NavigationBar";
 
@@ -30,8 +31,15 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container p="0" minW="100%" h={"fit-content"} bg={headerBg}>
-        <Container maxW="container.lg">
+      <Container
+        p="0"
+        minW="100%"
+        h={{'2xl': "600px"}}
+        bg={headerBg}
+        alignItems="center"
+        display="flex"
+      >
+        <Container display="flex" alignContent="center" maxW="container.lg">
           <HStack>
             <VStack alignItems="start" spacing="48px" p={"16"} h="100%" w="50%">
               <Heading as="h1" size={"xl"} autoCapitalize="">
@@ -50,6 +58,7 @@ const Home: NextPage = () => {
                 <BlobAnimated
                   id="svg1"
                   left="50%"
+                  top="50%"
                   blur={true}
                   values="M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45
 	c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2
@@ -77,6 +86,10 @@ const Home: NextPage = () => {
         </Container>
       </Container>
       <Container marginTop={"80px"} px="32px" maxW="container.lg">
+        <Heading textAlign={"center"} as="h2" size="lg">
+          Database search
+        </Heading>
+        <FilterBox></FilterBox>
         <DatabaseTable></DatabaseTable>
       </Container>
     </Container>
