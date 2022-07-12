@@ -9,6 +9,17 @@ export interface Data {
   avgPrice: number;
 }
 
+export var categoriesData: string[] = [
+  "Obilniny",
+  "Pečivo",
+  "Jogurty",
+  "Mäso",
+  "Sladkosti",
+  "Bezlepkové Pečivo",
+  "Nápoje",
+  "Proteinové Milkshakey",
+];
+
 export var data: Data[] = [
   {
     name: "Shay Whitaker",
