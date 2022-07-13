@@ -19,7 +19,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { DatabaseTable } from "../components/Database/DatabaseTable";
 import { FilterBox } from "../components/Database/Filters";
-import { BlobAnimatedJsx } from "../components/Misc/BlobVectorJsx";
+import { BlobAnimatedJsx } from "../components/Misc/BlobVector";
 import { dataBlue, dataPurp, dataRed } from "../testdata/blobData";
 
 const Home: NextPage = () => {

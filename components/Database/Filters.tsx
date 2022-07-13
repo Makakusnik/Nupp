@@ -12,8 +12,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { categoriesData } from "../../testdata/data";
-import { SelectWTags } from "../Input/SelectWTags";
-import { RangeSliderWInput } from "../Input/Sliders";
+import { SelectWTags } from "../Input/SelectInput/SelectWTags";
+import { RangeSliderWInput } from "../Input/Sliders/RangeSliders";
 import { MdOutlineSearch } from "react-icons/md";
 
 export const FilterBox = () => {

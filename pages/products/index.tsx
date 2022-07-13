@@ -7,7 +7,7 @@ import Header, {
   HeaderMainSection,
   HeaderText,
 } from "../../components/Content/Header";
-import { BlobAnimatedJsx } from "../../components/Misc/BlobVectorJsx";
+import { BlobAnimatedJsx } from "../../components/Misc/BlobVector";
 import { dataBlue } from "../../testdata/blobData";
 
 const Products: NextPage = () => {
