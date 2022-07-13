@@ -2,7 +2,7 @@ import { Box, Link, useColorModeValue } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import NextLink from "next/link";
 import { IconType } from "react-icons";
-import { LinkProps } from "../..";
+import { LinkProps } from "..";
 
 export const NavigationLink = ({ href, children }: LinkProps) => (
   <NextLink href={href} passHref={true}>

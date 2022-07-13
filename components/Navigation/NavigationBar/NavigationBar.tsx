@@ -12,7 +12,7 @@ import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import { BsMoonStarsFill, BsSunFill, BsFillPersonFill } from "react-icons/bs";
 import { SearchBarTwoOption } from "../../Input";
-import { NavigationLink } from "./NavigationBarLink/NavigationBarLink";
+import { NavigationLink } from "./NavigationBarLink";
 
 export const NavigationBar = () => {
   const [height, setHeight] = useState<string>("88px");
