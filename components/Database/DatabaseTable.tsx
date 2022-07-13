@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { data, Data } from "../../testdata/data";
-import { DataTableLink } from "../navigation/Links";
+import { DataTableLink } from "../Navigation/Links";
 
 const formatSecondaryData = (data: string) => {
   return <DataTableLink href="#">{data}</DataTableLink>;

@@ -58,21 +58,6 @@ export const BlobAnimatedJsx = ({ id, top, left, data }) => {
             values={data.variants}
           />
         </path>
-        <path
-          style={{ zIndex: "99" }}
-          d="M63 64L89.5 99L121 105L60 112.5L63 64Z"
-          fill={"red"}
-        >
-          <animate
-            id="animation-to-check"
-            repeatCount="indefinite"
-            dur="10s"
-            attributeName="d"
-            values={
-              "M63 68L75.5 99L121 120L60 112.5L63 69Z; M63 64L89.5 99L121 105L60 112.5L63 64Z;M63 64L89.5 99L121 105L60 112.5L63 64Z"
-            }
-          />
-        </path>
       </Svg>
       <Svg
         hasBlur={hasBlur}

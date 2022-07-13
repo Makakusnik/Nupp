@@ -45,6 +45,7 @@ export const NavigationBar = () => {
 
   return (
     <Flex
+    as="nav"
       transition="height 0.5s ease-in-out"
       h={height}
       p={{ lg: "4px 64px", md: "4px 16px" }}
@@ -82,6 +83,7 @@ export const NavigationBar = () => {
       <SearchBar />
       <HStack spacing={"16px"}>
         <IconButton
+          bg={barBg}
           aria-label="Toggle light dark mode"
           onClick={toggleColorMode}
           icon={
@@ -92,8 +94,8 @@ export const NavigationBar = () => {
             )
           }
         />
-        <IconButton aria-label="Log In">
-          <Box as={BsFillPersonFill} size="24px" color="green.400"></Box>
+        <IconButton aria-label="Log In" bg={barBg}>
+          <Box as={BsFillPersonFill} size="24px" color="green.400" />
         </IconButton>
       </HStack>
     </Flex>
