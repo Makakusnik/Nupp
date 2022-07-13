@@ -4,6 +4,7 @@ import {
   Tag,
   TagCloseButton,
   TagLabel,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
@@ -11,9 +12,11 @@ import { useEffect, useState } from "react";
 export const SelectWTags = ({ data }: { data: string[] }) => {
   const [list, setList] = useState<string[]>([]);
   const [dataList, setDataList] = useState<string[]>([" ", ...data]);
+
+  const tagFontColor = useColorModeValue("gray.700", "gray.900");
   useEffect(() => {}, [list]);
   return (
-    <Container>
+    <Container px="0px" marginTop="16px">
       <Select
         onChange={(val) => {
           setList([...list, val.target.value]);
@@ -27,15 +30,23 @@ export const SelectWTags = ({ data }: { data: string[] }) => {
           </option>
         ))}
       </Select>
-      <Container marginTop="16px" maxH="132px" w="100%" overflowY={"auto"}>
+      <Container
+        marginTop="16px"
+        maxH="132px"
+        minW="100%"
+        padding="0px"
+        overflowY={"auto"}
+      >
         {list.map((item, index) => {
           return (
             <Tag
               size="sm"
               key={index}
               colorScheme="green"
+              color={tagFontColor}
               bg="green.300"
               mx={"4px"}
+              my="2px"
             >
               <TagLabel>{item}</TagLabel>
               <TagCloseButton
