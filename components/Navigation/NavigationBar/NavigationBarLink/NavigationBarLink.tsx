@@ -2,11 +2,7 @@ import { Box, Link, useColorModeValue } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import NextLink from "next/link";
 import { IconType } from "react-icons";
-
-interface LinkProps {
-  href: string;
-  children: string;
-}
+import { LinkProps } from "../..";
 
 export const NavigationLink = ({ href, children }: LinkProps) => (
   <NextLink href={href} passHref={true}>
@@ -43,21 +39,3 @@ const LinkWrap = styled(Box)`
     }
   }
 `;
-
-export const DataTableLink = ({ href, children }: LinkProps) => {
-  const color = useColorModeValue("blackAlpha.700", "whiteAlpha.600");
-
-  return (
-    <NextLink href={href} passHref>
-      <Link
-        color={color}
-        fontSize="12px"
-        alignItems="center"
-        display="flex"
-        w="fit-content"
-      >
-        {children}
-      </Link>
-    </NextLink>
-  );
-};

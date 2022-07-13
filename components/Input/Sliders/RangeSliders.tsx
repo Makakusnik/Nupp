@@ -6,7 +6,6 @@ import {
   RangeSliderTrack,
   HStack,
   Input,
-  Text,
   Checkbox,
 } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
