@@ -1,13 +1,8 @@
 import {
   Button,
-  ButtonGroup,
-  Center,
   Container,
   Heading,
-  HStack,
-  Text,
   useColorModeValue,
-  VStack,
 } from "@chakra-ui/react";
 import Header, {
   HeaderHeading,
