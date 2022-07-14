@@ -1,6 +1,7 @@
-import { Button, ButtonGroup, Container } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Container } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
+import CategoriesContainer from "../../components/Content/Categories";
 import Header, {
   HeaderHeading,
   HeaderImageSection,
@@ -42,6 +43,11 @@ const Products: NextPage = () => {
           ></BlobAnimatedJsx>
         </HeaderImageSection>
       </Header>
+
+      <CategoriesContainer />
+      <Container marginTop="80px" bg="gray.200" maxW="container.lg">
+        <Box bg="gray.500" h="400px"></Box>
+      </Container>
     </Container>
   );
 };
