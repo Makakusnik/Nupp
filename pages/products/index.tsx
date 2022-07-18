@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Container } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Container, Heading } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 import CategoriesContainer from "../../components/Content/Categories";
@@ -8,6 +8,8 @@ import Header, {
   HeaderMainSection,
   HeaderText,
 } from "../../components/Content/Header";
+import { DatabaseTable } from "../../components/Database/DatabaseTable";
+import { FilterBox } from "../../components/Database/Filters";
 import { BlobAnimatedJsx } from "../../components/Misc/BlobVector";
 import { dataBlue } from "../../testdata/blobData";
 
@@ -31,7 +33,7 @@ const Products: NextPage = () => {
           </HeaderText>
           <ButtonGroup>
             <Button variant="CTA">Find recommended products</Button>
-            <Button variant="ghost">Add your own products</Button>
+            <Button as='a' variant="ghost" href='/products/add'>Add your own products</Button>
           </ButtonGroup>
         </HeaderMainSection>
         <HeaderImageSection>
@@ -43,10 +45,13 @@ const Products: NextPage = () => {
           ></BlobAnimatedJsx>
         </HeaderImageSection>
       </Header>
-
       <CategoriesContainer />
-      <Container marginTop="80px" bg="gray.200" maxW="container.lg">
-        <Box bg="gray.500" h="400px"></Box>
+      <Container marginTop={"80px"} px="32px" maxW="container.lg">
+        <Heading textAlign={"center"} as="h2" size="lg">
+          Database search
+        </Heading>
+        <FilterBox/>
+        <DatabaseTable/>
       </Container>
     </Container>
   );
