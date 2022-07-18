@@ -27,7 +27,7 @@ const CategoriesContainer = () => {
       h="fit-content"
       bg={headerBg}
       p={"32px"}
-      borderRadius="32px"
+      borderRadius="lg"
     >
       <VStack w="100%" align="left">
         <Heading paddingBottom="8px" as="h2">
@@ -45,7 +45,6 @@ const CategoriesContainer = () => {
             <Category
               icon={MdClose}
               backgroundColor={useColorModeValue("red.600", "red.400")}
-              backgroundHoverColor={useColorModeValue("red.100", "red.700")}
               color={useColorModeValue("red.300", "red.700")}
             >
               Unhealthy Additives
@@ -56,7 +55,6 @@ const CategoriesContainer = () => {
           <Category
             icon={MdPriorityHigh}
             backgroundColor={useColorModeValue("yellow.600", "yellow.300")}
-            backgroundHoverColor={useColorModeValue("yellow.100", "yellow.600")}
             color={useColorModeValue("yellow.300", "yellow.600")}
           >
             Alergens
@@ -66,7 +64,6 @@ const CategoriesContainer = () => {
           <Category
             icon={MdCheck}
             backgroundColor={useColorModeValue("green.600", "green.400")}
-            backgroundHoverColor={useColorModeValue("green.100", "green.700")}
             color={useColorModeValue("green.300", "green.700")}
           >
             Health-Promoting
@@ -85,7 +82,6 @@ export default CategoriesContainer;
 interface CategoryProps {
   icon: IconType;
   backgroundColor: string;
-  backgroundHoverColor: string;
   color: string;
   children: string;
 }
@@ -93,20 +89,20 @@ interface CategoryProps {
 const Category = ({
   icon,
   backgroundColor,
-  backgroundHoverColor,
   color,
   children,
 }: CategoryProps) => {
   const [hover, setHover] = useState<boolean>(false);
   const mouseEnter = () => setHover(true);
   const mouseLeave = () => setHover(false);
+  const backgroundHoverColor = useColorModeValue("blackAlpha.50", "whiteAlpha.200");
 
   return (
     <VStack
       minW="3xs"
       minH="7rem"
       display="flex"
-      borderRadius="16px"
+      borderRadius="md"
       justifyContent="center"
       transition="box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out"
       _hover={{
@@ -124,7 +120,7 @@ const Category = ({
           size="32px"
           p="2px"
           display="flex"
-          borderRadius={"50%"}
+          borderRadius={"md"}
           bg={backgroundColor}
           color={color}
           alignContent={"center"}
@@ -141,7 +137,7 @@ const Category = ({
           w="32px"
           display="flex"
           h="32px"
-          borderRadius={"50%"}
+          borderRadius={"md"}
           bg={backgroundColor}
           transition="filter 0.3s ease-in-out"
           filter={hover ? "blur(5px)" : ""}
