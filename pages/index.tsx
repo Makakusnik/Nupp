@@ -2,7 +2,6 @@ import {
   Button,
   Container,
   Heading,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import Header, {
   HeaderHeading,
@@ -18,7 +17,6 @@ import { BlobAnimatedJsx } from "../components/Misc/BlobVector";
 import { dataBlue, dataPurp, dataRed } from "../testdata/blobData";
 
 const Home: NextPage = () => {
-  const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
     <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
