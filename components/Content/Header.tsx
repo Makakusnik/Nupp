@@ -4,7 +4,6 @@ import {
   Grid,
   GridItem,
   Heading,
-  ResponsiveValue,
   Text,
   useColorModeValue,
   VStack,
@@ -16,9 +15,38 @@ interface ChildrenOnlyProps {
 
 interface HeaderProps {
   h?: any;
+  isTransparent?: boolean;
 }
 
-const Header = ({ h, children }: HeaderProps & ChildrenOnlyProps) => {
+export const SmallHeader = ({ h, children,isTransparent }: HeaderProps & ChildrenOnlyProps) => {
+  const headerBg = useColorModeValue("gray.50", "gray.900");
+
+  return (
+    <Container
+      minW="100%"
+      minH={(h && { ...h })}
+      h="fit-content"
+      bg={isTransparent ? "transparent" : headerBg}
+      alignItems="center"
+      display="flex"
+      as="header"
+    >
+      <Grid
+        display="flex"
+        alignContent="center"
+        maxW="container.lg"
+        templateColumns={"1fr 1fr"}
+        px="16px"
+        mx="auto"
+        w="100%"
+      >
+        {children}
+      </Grid>
+    </Container>
+  );
+};
+
+const Header = ({ h, children,isTransparent }: HeaderProps & ChildrenOnlyProps) => {
   const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
@@ -26,7 +54,7 @@ const Header = ({ h, children }: HeaderProps & ChildrenOnlyProps) => {
       minW="100%"
       minH={(h && { ...h }) || { "2xl": "500px" }}
       h="fit-content"
-      bg={headerBg}
+      bg={isTransparent ? "transparent" : headerBg}
       alignItems="center"
       display="flex"
       as="header"
