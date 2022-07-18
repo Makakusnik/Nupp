@@ -60,7 +60,7 @@ Keep in mind I am pre-junior developer, I have no corporate experience so there 
       - [ ] Settings
    
   - [ ]  ~~UI Sketches~~
-  - [ ]  UI Design 
+  - [x]  UI Design 
 
 - [ ] Coding   
 
