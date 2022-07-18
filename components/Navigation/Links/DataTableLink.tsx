@@ -1,8 +1,6 @@
-import { Box, Link, useColorModeValue } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+import { Link, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { IconType } from "react-icons";
-import { LinkProps } from "../..";
+import { LinkProps } from "..";
 
 export const DataTableLink = ({ href, children }: LinkProps) => {
   const color = useColorModeValue("blackAlpha.700", "whiteAlpha.600");

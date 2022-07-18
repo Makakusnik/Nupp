@@ -1,30 +1,36 @@
 import React, { ReactNode } from "react";
 import {
   Container,
+  Flex,
   Grid,
   GridItem,
-  Heading,
+  Heading as H,
   Text,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import { FlexType } from "../../types/Types";
 
-interface ChildrenOnlyProps {
+type ChildrenOnlyProps = {
   children: ReactNode | string;
-}
+};
 
-interface HeaderProps {
+type HeaderProps = {
   h?: any;
   isTransparent?: boolean;
-}
+};
 
-export const SmallHeader = ({ h, children,isTransparent }: HeaderProps & ChildrenOnlyProps) => {
+export const SmallHeader = ({
+  h,
+  children,
+  isTransparent,
+}: HeaderProps & ChildrenOnlyProps) => {
   const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
     <Container
       minW="100%"
-      minH={(h && { ...h })}
+      minH={h && { ...h }}
       h="fit-content"
       bg={isTransparent ? "transparent" : headerBg}
       alignItems="center"
@@ -46,7 +52,11 @@ export const SmallHeader = ({ h, children,isTransparent }: HeaderProps & Childre
   );
 };
 
-const Header = ({ h, children,isTransparent }: HeaderProps & ChildrenOnlyProps) => {
+export const Component = ({
+  h,
+  children,
+  isTransparent,
+}: HeaderProps & ChildrenOnlyProps) => {
   const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
@@ -74,17 +84,15 @@ const Header = ({ h, children,isTransparent }: HeaderProps & ChildrenOnlyProps) 
   );
 };
 
-export default Header;
-
-export const HeaderHeading = ({ children }: ChildrenOnlyProps) => {
+export const Title = ({ children }: ChildrenOnlyProps) => {
   return (
-    <Heading as="h1" size={"2xl"} autoCapitalize="">
+    <H as="h1" size={"2xl"}>
       {children}
-    </Heading>
+    </H>
   );
 };
 
-export const HeaderText = ({ children }: ChildrenOnlyProps) => {
+export const Description = ({ children }: ChildrenOnlyProps) => {
   const fontColor = useColorModeValue("blackAlpha.800", "whiteAlpha.800");
   return (
     <Text fontWeight="200" color={fontColor}>
@@ -93,7 +101,7 @@ export const HeaderText = ({ children }: ChildrenOnlyProps) => {
   );
 };
 
-export const HeaderMainSection = ({ children }: ChildrenOnlyProps) => {
+export const MainSection = ({ children }: ChildrenOnlyProps) => {
   return (
     <GridItem w="60%">
       <VStack alignItems="start" spacing="48px" p={"16"} h="100%">
@@ -103,10 +111,13 @@ export const HeaderMainSection = ({ children }: ChildrenOnlyProps) => {
   );
 };
 
-export const HeaderImageSection = ({ children }: ChildrenOnlyProps) => {
+export const ImageSection = ({
+  children,
+  placeContent,
+}: ChildrenOnlyProps & FlexType) => {
   return (
     <GridItem w="40%" position="relative">
-      {children}
+      <Flex placeContent={placeContent}>{children}</Flex>
     </GridItem>
   );
 };

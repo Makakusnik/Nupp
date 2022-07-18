@@ -1,14 +1,5 @@
-import {
-  Button,
-  Container,
-  Heading,
-} from "@chakra-ui/react";
-import Header, {
-  HeaderHeading,
-  HeaderImageSection,
-  HeaderMainSection,
-  HeaderText,
-} from "../components/Content/Header";
+import { Button, Container, Heading } from "@chakra-ui/react";
+import * as Header from "../components/Content/Header";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { DatabaseTable } from "../components/Database/DatabaseTable";
@@ -17,7 +8,6 @@ import { BlobAnimatedJsx } from "../components/Misc/BlobVector";
 import { dataBlue, dataPurp, dataRed } from "../testdata/blobData";
 
 const Home: NextPage = () => {
-
   return (
     <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
       <Head>
@@ -28,20 +18,20 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header h={{ "2xl": 700 }}>
-        <HeaderMainSection>
-          <HeaderHeading>
+      <Header.Component h={{ "2xl": 700 }}>
+        <Header.MainSection>
+          <Header.Title>
             NUTRITIOUS
             <br></br>
             APPLICATION
-          </HeaderHeading>
-          <HeaderText>
+          </Header.Title>
+          <Header.Description>
             Looking for easy yet effective way to track your costs,
             macronutrients and eating habits? Nupp will save you!
-          </HeaderText>
+          </Header.Description>
           <Button variant="CTA">Find Diet Plan!</Button>
-        </HeaderMainSection>
-        <HeaderImageSection>
+        </Header.MainSection>
+        <Header.ImageSection>
           <BlobAnimatedJsx
             id="svg1"
             left="155px"
@@ -60,8 +50,8 @@ const Home: NextPage = () => {
             top="20%"
             data={dataRed}
           ></BlobAnimatedJsx>
-        </HeaderImageSection>
-      </Header>
+        </Header.ImageSection>
+      </Header.Component>
       <Container marginTop={"80px"} px="32px" maxW="container.lg">
         <Heading textAlign={"center"} as="h2" size="lg">
           Database search
