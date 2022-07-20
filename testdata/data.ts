@@ -20,6 +20,29 @@ export var categoriesData: string[] = [
   "Proteinové Milkshakey",
 ];
 
+type FoodAdditive = {
+  code: string;
+  name: string;
+  type: "healthy" | "neutral" | "dangerous";
+}
+
+export const foodAdditives: FoodAdditive[] = [
+  {code: "E126", name: "Aluminium", type: "dangerous"},
+  {code: "E152", name: "Gazorpazor", type: "healthy"},
+  {code: "E015", name: "Flumstick", type: "neutral"},
+]
+
+type Alergen = {
+  name: string; 
+}
+
+export const Alergens: Alergen[] = [
+  {name: 'nuts' },
+  {name: 'Sulfur Dioxide' },
+  {name: 'Shmixid' }
+
+]
+
 export var data: Data[] = [
   {
     name: "Shay Whitaker",
