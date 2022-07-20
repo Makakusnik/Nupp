@@ -5,8 +5,10 @@ import {
   FormHelperText,
   FormLabel,
   HStack,
+  IconButton,
   Input,
   InputGroup,
+  InputLeftAddon,
   InputRightAddon,
   Select,
   Stack,
@@ -21,6 +23,10 @@ import { FaAppleAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { BigButton } from "../../components/Input";
 import { MainHeading } from "../../components/Content/Form/Header";
+import { Alergens, foodAdditives } from "../../testdata/data";
+import { MdAdd } from "react-icons/md";
+import { FormFieldInput } from "../../components/Content/Form/FieldInput";
+import { FormSelectInputWithTags } from "../../components/Content/Form/SelectInputWithTags";
 
 const Products: NextPage = () => {
   const [isMealForm, setIsMealForm] = useState(false);
@@ -141,83 +147,183 @@ const ProductForm = () => {
           <Box as={FaAppleAlt} size="128px"></Box>
         </Header.ImageSection>
       </Header.SmallHeader>
-      <FormControl
-        w="container.md"
-        display="flex"
-        flexDirection={"column"}
-        alignItems={"center"}
-      >
+      <FormControl w="container.md" display="flex" flexDirection={"column"}>
         <MainHeading>Product Details</MainHeading>
         <HStack marginTop="24px" alignItems={"start"} justifyContent="start">
-          <VStack w="60%" px="16px" spacing="24px">
-            <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-              <FormLabel htmlFor="ProductName" whiteSpace={"nowrap"}>
-                Product Name
-              </FormLabel>
-              <Input w="25ch" id="ProductName" type="text" />
-            </HStack>
-            <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-              <FormLabel htmlFor="BrandName" whiteSpace={"nowrap"}>
-                Brand Name
-              </FormLabel>
-              <Input id="BrandName" w="25ch" />
-            </HStack>
-            <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-              <FormLabel htmlFor="PackingWeight" whiteSpace={"nowrap"}>
-                Packing Weight
-              </FormLabel>
-              <InputGroup w="25ch">
-                <Input id="PackingWeight" w="25ch" type="number" />
-                <InputRightAddon>grams</InputRightAddon>
-              </InputGroup>
-            </HStack>
-            <VStack w="100%" alignItems={"end"}>
-              <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-                <FormLabel htmlFor="VendorPrice" whiteSpace={"nowrap"}>
+          <VStack w="70%" px="16px" spacing="24px">
+            <FormFieldInput id="productName" type="text">
+              Product Name
+            </FormFieldInput>
+            <FormFieldInput id="brandName" type="text">
+              Brand Name
+            </FormFieldInput>
+            <FormFieldInput id="packingWeight" type="number" rightAddon="grams">
+              Packing Weight
+            </FormFieldInput>
+            <VStack w="100%">
+              <HStack w="100%">
+                <FormLabel
+                  htmlFor="VendorPrice"
+                  whiteSpace={"nowrap"}
+                  w="200px"
+                >
                   Vendor {"&"} Price
                 </FormLabel>
-                <HStack w="25ch">
-                  <Input id="VendorName" />
-                  <InputGroup w="10ch">
-                    <Input px="1" type={"number"} w="6ch" id="VendorPrice" />
-                    <InputRightAddon p="3">$</InputRightAddon>
+                <HStack w="350px">
+                  <Select id="VendorName" w="60%" />
+                  <InputGroup w="40%">
+                    <Input
+                      min={0}
+                      max={999.99}
+                      p="2"
+                      type={"number"}
+                      id="VendorPrice"
+                    />
+                    <InputRightAddon>$</InputRightAddon>
                   </InputGroup>
+                  <IconButton
+                    aria-label="Add Vendor & Price pair."
+                    icon={<MdAdd size="24px" />}
+                    colorScheme="green"
+                    size="xs"
+                  />
                 </HStack>
               </HStack>
             </VStack>
-            <VStack w="100%" alignItems={"end"}>
-              <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-                <FormLabel htmlFor="VendorPrice" whiteSpace={"nowrap"}>
-                  Food Additives
-                </FormLabel>
-                <Select id="BrandName" w="25ch" />
-              </HStack>
-            </VStack>
-            <VStack w="100%" alignItems={"end"}>
-              <HStack w="100%" spacing="24px" justifyContent={"space-between"}>
-                <FormLabel htmlFor="VendorPrice" whiteSpace={"nowrap"}>
-                  Alergens
-                </FormLabel>
-                <Select id="BrandName" w="25ch" />
-              </HStack>
-            </VStack>
+            <FormSelectInputWithTags
+              placeholder="Pick Additive"
+              data={foodAdditives}
+              id="foodAdditives"
+            >
+              Food Additives
+            </FormSelectInputWithTags>
+            <FormSelectInputWithTags
+              placeholder="Pick Alergen"
+              data={Alergens}
+              id="alergens"
+            >
+              Alergens
+            </FormSelectInputWithTags>
           </VStack>
-
-          <VStack w="40%">
-            <Box h="256px" w="256px" bg="red"></Box>
+          <VStack w="30%">
+            <Box h="200px" w="200px" bg="red"></Box>
           </VStack>
         </HStack>
-        <VStack marginTop="32px" alignContent="center" w="container.sm">
-          <MainHeading>Product Details</MainHeading>
-          <Box h="256px" w="256px" bg="red"></Box>
-        </VStack>
+        <Container marginTop="64px" alignSelf={"center"} minW="container.xs">
+          <MainHeading>Macro Nutrients</MainHeading>
+          <VStack px="16px" marginTop="24px">
+            <HStack spacing="40px" alignItems="start">
+              <VStack spacing="24px">
+                <VStack>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    type="number"
+                  >
+                    Fats
+                  </FormFieldInput>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    tooltip="Saturated Fatty Acids"
+                    paddingLeft="16px"
+                    type="number"
+                  >
+                    SFA
+                  </FormFieldInput>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    tooltip="Monounsaturated Fatty Acids"
+                    paddingLeft="16px"
+                    type="number"
+                  >
+                    MUFA
+                  </FormFieldInput>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    tooltip="Polyunsaturated Fatty Acids"
+                    paddingLeft="16px"
+                    type="number"
+                  >
+                    PUFA
+                  </FormFieldInput>
+                </VStack>
+                <FormFieldInput
+                  id="productName"
+                  rightAddon="g"
+                  fieldWidth="fit-content"
+                  inputWidth="120px"
+                  labelWidth="80px"
+                  type="number"
+                >
+                  Proteins
+                </FormFieldInput>
+              </VStack>
+              <VStack spacing="24px">
+                <VStack>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    type="number"
+                  >
+                    Carbs
+                  </FormFieldInput>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    paddingLeft="16px"
+                    type="number"
+                  >
+                    Sugar
+                  </FormFieldInput>
+                  <FormFieldInput
+                    id="productName"
+                    rightAddon="g"
+                    fieldWidth="fit-content"
+                    inputWidth="120px"
+                    labelWidth="80px"
+                    paddingLeft="16px"
+                    type="number"
+                  >
+                    Fiber
+                  </FormFieldInput>
+                </VStack>
+
+                <FormFieldInput
+                  id="productName"
+                  rightAddon="g"
+                  fieldWidth="fit-content"
+                  inputWidth="120px"
+                  labelWidth="80px"
+                  type="number"
+                >
+                  Salt
+                </FormFieldInput>
+              </VStack>
+            </HStack>
+          </VStack>
+        </Container>
       </FormControl>
     </>
   );
 };
-
-type FormFieldProps = {
-  id: string;
-};
-
-const FormInput = () => {};
