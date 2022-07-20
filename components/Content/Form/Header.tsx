@@ -3,12 +3,15 @@ import styled from "@emotion/styled";
 
 type HeadingProps = {
   children: string;
+  size?: string;
 };
 
-export const MainHeading = ({ children }: HeadingProps) => {
+export const MainHeading = ({ children, size }: HeadingProps) => {
   return (
     <Stack w="100%">
-      <Heading as="h2">{children}</Heading>
+      <Heading size={size || "lg"} as="h2">
+        {children}
+      </Heading>
       <Divider borderBottomWidth={"2px"}></Divider>
     </Stack>
   );
