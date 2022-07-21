@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Positionable = {
     top : string ;
     left: string;
@@ -26,8 +28,16 @@ export type FormFieldProps = {
   tooltip?: string;
 };
 
-
+export type ChildrenOnlyProps= {
+  children:  ReactNode | any[] | string ;
+};
 
 export type FormSelectProps<T> = {
   data: T[];
 };
+
+export type SelectContainerProps<T> = {
+  data: T[];
+  
+}
+

@@ -9,11 +9,7 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { FlexType } from "../../types/Types";
-
-type ChildrenOnlyProps = {
-  children: ReactNode | string;
-};
+import { ChildrenOnlyProps, FlexType } from "../../types/Types";
 
 type HeaderProps = {
   h?: any;

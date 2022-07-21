@@ -20,19 +20,20 @@ export var categoriesData: string[] = [
   "Proteinové Milkshakey",
 ];
 
-type FoodAdditive = {
+export type FoodAdditive = {
   code: string;
   name: string;
   type: "healthy" | "neutral" | "dangerous";
+  id: string;
 }
 
 export const foodAdditives: FoodAdditive[] = [
-  {code: "E126", name: "Aluminium", type: "dangerous"},
-  {code: "E152", name: "Gazorpazor", type: "healthy"},
-  {code: "E015", name: "Flumstick", type: "neutral"},
+  {id: 'fadk',code: "E126", name: "Aluminium", type: "dangerous"},
+  {id: 'faak',code: "E152", name: "Gazorsd oiasdj fojasdfoi jasdoifjdosajfodsj oipazor", type: "healthy"},
+  {id: 'fsak',code: "E015", name: "Flumstick", type: "neutral"},
 ]
 
-type Alergen = {
+export type Alergen = {
   name: string; 
 }
 
