@@ -1,5 +1,7 @@
 import {
   Box,
+  Button,
+  ButtonGroup,
   Container,
   FormControl,
   FormLabel,
@@ -15,7 +17,7 @@ import Head from "next/head";
 import * as Header from "../../components/Content/Header";
 import { GiMeal } from "react-icons/gi";
 import { FaAppleAlt } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { BigButton } from "../../components/Input";
 import { MainHeading } from "../../components/Input/Form/Header";
 import { FormFieldInput } from "../../components/Input/Form/FieldInput";
@@ -23,6 +25,7 @@ import { ProductDetailsSection } from "../../components/Content/";
 import * as FormElements from "../../components/Input/Form/FormElements";
 import { CustomTooltip } from "../../components/Misc/Tooltip";
 import { MacroNutrientsSection } from "../../components/Content/Pages/products/add";
+import { MdCheck } from "react-icons/md";
 
 const Products: NextPage = () => {
   const [isMealForm, setIsMealForm] = useState(false);
@@ -145,6 +148,11 @@ const ProductForm = () => {
             </HStack>
           </VStack>
         </Container>
+        <ButtonGroup>
+          <Button colorScheme={"green"} w="16ch" alignSelf="end" rightIcon={<MdCheck size="24px" />}>
+            Add Product
+          </Button>
+        </ButtonGroup>
       </FormControl>
     </>
   );

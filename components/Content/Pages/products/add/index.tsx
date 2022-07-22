@@ -6,6 +6,163 @@ import { Select } from "../../../../Input";
 import * as FormElements from "../../../../Input/Form/FormElements";
 import { CustomTooltip } from "../../../../Misc/Tooltip";
 
+export const ProductDetailsSection = () => {
+  return (
+    <VStack w="70%" px="16px" spacing="24px">
+      <ProductNameField />
+      <BrandNameField />
+      <PackingWeight />
+      <VendorAndPriceComponent />
+      <FoodAdditivesComponent />
+    </VStack>
+  );
+};
+
+export const MacroNutrientsSection = () => {
+  return (
+    <>
+      <VStack spacing="16px" alignItems="space-between">
+        <VStack spacing="8px">
+          <FatsInputField />
+          <SfaInputField />
+          <MufaInputField />
+          <PufaInputField />
+        </VStack>
+        <ProteinsInputField />
+      </VStack>
+      <VStack spacing="16px" alignItems="space-between">
+        <VStack spacing="8px">
+          <CarbohydratesInputField />
+          <SugarInputField />
+          <FiberInputField />
+        </VStack>
+        <SaltInputField />
+      </VStack>
+    </>
+  );
+};
+
+export const VendorAndPriceComponent = () => {
+  const [selectedValuePairs, setSelectedValuePairs] = useState<VendorPricePair[]>([]);
+  const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
+
+  /* Checks if input from Vendor Select component and Price Input component is valid
+    conditions Select: Select can't have value that's been already chosen OR can't be first value (place holder)
+    conditions Input: Can't be NaN or 0.
+    */
+  const isValid = () => {
+    if (inputRef.current) {
+      inputRef.current.reportValidity();
+    }
+    if (
+      selectedValuePairs.some((item) => item.name === selectRef.current?.value) ||
+      !selectRef.current?.value ||
+      Number(inputRef.current?.value) === 0
+    ) {
+      setButtonDisabled(true);
+      return false;
+    }
+    setButtonDisabled(false);
+    return true;
+  };
+
+  const handleAdd = (e: SyntheticEvent) => {
+    if (!isValid()) {
+      setButtonDisabled(true);
+      return;
+    }
+    if (inputRef.current) inputRef.current.value = Number(inputRef.current?.value).toFixed(2);
+    setSelectedValuePairs([
+      { name: selectRef.current?.value || "", price: Number(inputRef.current?.value) || 0 },
+      ...selectedValuePairs,
+    ]);
+    if (selectRef.current) {
+      selectRef.current.selectedIndex = 0;
+    }
+    if (inputRef.current) {
+      inputRef.current.value = "0.00";
+    }
+    setButtonDisabled(true);
+  };
+  useEffect(() => {}, []);
+
+  return (
+    <FormElements.Wrapper>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
+          Vendor {"&"} Price
+        </FormLabel>
+      </FormElements.LabelSection>
+
+      <FormElements.MainSection>
+        <FormElements.InputSection>
+          <Select
+            id={"vendorPrice"}
+            name={"Vendor And Price"}
+            placeholder={"Pick Vendor"}
+            data={foodAdditives}
+            onChange={isValid}
+            ref={selectRef}
+          />
+          <InputGroup w="19ch">
+            <Input
+              ref={inputRef}
+              min={0}
+              max={999.99}
+              p="2"
+              type={"number"}
+              id="VendorPrice"
+              onChange={isValid}
+              step="0.01"
+            />
+            <InputRightAddon>$</InputRightAddon>
+          </InputGroup>
+          <IconButton
+            isDisabled={isButtonDisabled}
+            onClick={handleAdd}
+            aria-label="Add Vendor & Price pair."
+            icon={<MdAdd size="24px" />}
+            colorScheme="green"
+            size="xs"
+          />
+        </FormElements.InputSection>
+        <FormElements.ContainerSection>
+          {selectedValuePairs.map((item, index) => {
+            return (
+              <FormElements.SelectedItem key={index}>
+                <VendorPricePair name={item.name} price={item.price}></VendorPricePair>
+              </FormElements.SelectedItem>
+            );
+          })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
+    </FormElements.Wrapper>
+  );
+};
+
+type VendorPricePair = {
+  name: string;
+  price: number;
+};
+
+const VendorPricePair = ({ name, price }: { name: string; price: number }) => {
+  return (
+    <>
+      <Box minW="8px" minH="8px" bg={"gray.300"} />
+      <Text minW="18ch" maxW="18ch" noOfLines={1}>
+        {name}
+      </Text>
+      <Text textAlign="end" minW="6ch" maxW="6ch" noOfLines={1}>
+        {price + " "} $
+      </Text>
+      <IconButton aria-label="Remove Option" colorScheme="red" size="xs" icon={<MdClose size="24px" />}></IconButton>
+    </>
+  );
+};
+
 const FoodAdditiveItem = ({ type, code, id, name }: FoodAdditive) => {
   const [color, setColor] = useState("gray.900");
   useEffect(() => {
@@ -77,126 +234,6 @@ export const FoodAdditivesComponent = () => {
   );
 };
 
-type VendorPricePair = {
-  name: string;
-  price: number;
-};
-
-export const VendorAndPriceComponent = () => {
-  const [selectedValuePairs, setSelectedValuePairs] = useState<VendorPricePair[]>([]);
-  const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-  const selectRef = useRef<HTMLSelectElement>(null);
-
-  /* Checks if input from Vendor Select component and Price Input component is valid
-      conditions Select: Select can't have value that's been already chosen OR can't be first value (place holder)
-      conditions Input: Can't be NaN or 0.
-    */
-
-  const isValid = () => {
-    if (inputRef.current) {
-      inputRef.current.reportValidity();
-      inputRef.current.value = Number(inputRef.current?.value).toFixed(2);
-    }
-    if (
-      selectedValuePairs.some((item) => item.name === selectRef.current?.value) ||
-      !selectRef.current?.value ||
-      Number(inputRef.current?.value) === 0
-    ) {
-      setButtonDisabled(true);
-      return false;
-    }
-    setButtonDisabled(false);
-    return true;
-  };
-
-  const handleAdd = (e: SyntheticEvent) => {
-    if (!isValid()) {
-      setButtonDisabled(true);
-      return;
-    }
-    setSelectedValuePairs([
-      { name: selectRef.current?.value || "", price: Number(inputRef.current?.value) || 0 },
-      ...selectedValuePairs,
-    ]);
-    if (selectRef.current) {
-      selectRef.current.selectedIndex = 0;
-    }
-    if (inputRef.current) {
-      inputRef.current.value = "0.00";
-    }
-    setButtonDisabled(true);
-  };
-  return (
-    <FormElements.Wrapper>
-      <FormElements.LabelSection>
-        <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
-          Vendor {"&"} Price
-        </FormLabel>
-      </FormElements.LabelSection>
-
-      <FormElements.MainSection>
-        <FormElements.InputSection>
-          <Select
-            id={"vendorPrice"}
-            name={"Vendor And Price"}
-            placeholder={"Pick Vendor"}
-            data={foodAdditives}
-            onChange={isValid}
-            ref={selectRef}
-          />
-          <InputGroup w="19ch">
-            <Input
-              ref={inputRef}
-              min={0}
-              max={999.99}
-              p="2"
-              type={"number"}
-              id="VendorPrice"
-              onChange={isValid}
-              step="0.01"
-            />
-            <InputRightAddon>$</InputRightAddon>
-          </InputGroup>
-          <IconButton
-            isDisabled={isButtonDisabled}
-            onClick={handleAdd}
-            aria-label="Add Vendor & Price pair."
-            icon={<MdAdd size="24px" />}
-            colorScheme="green"
-            size="xs"
-          />
-        </FormElements.InputSection>
-        <FormElements.ContainerSection>
-          {selectedValuePairs.map((item, index) => {
-            return (
-              <FormElements.SelectedItem key={index}>
-                <VendorPricePair name={item.name} price={item.price}></VendorPricePair>
-              </FormElements.SelectedItem>
-            );
-          })}
-        </FormElements.ContainerSection>
-      </FormElements.MainSection>
-    </FormElements.Wrapper>
-  );
-};
-
-const VendorPricePair = ({ name, price }: { name: string; price: number }) => {
-  return (
-    <>
-      <Box minW="8px" minH="8px" bg={"gray.300"} />
-      <Text minW="18ch" maxW="18ch" noOfLines={1}>
-        {name}
-      </Text>
-      <Text textAlign="end" minW="6ch" maxW="6ch" noOfLines={1}>
-        {price + " "} $
-      </Text>
-      <IconButton aria-label="Remove Option" colorScheme="red" size="xs" icon={<MdClose size="24px" />}></IconButton>
-    </>
-  );
-};
-
 const ProductNameField = () => {
   return (
     <FormElements.Wrapper>
@@ -245,43 +282,7 @@ const PackingWeight = () => {
   );
 };
 
-export const ProductDetailsSection = () => {
-  return (
-    <VStack w="70%" px="16px" spacing="24px">
-      <ProductNameField />
-      <BrandNameField />
-      <PackingWeight />
-      <VendorAndPriceComponent />
-      <FoodAdditivesComponent />
-    </VStack>
-  );
-};
-
-export const MacroNutrientsSection = () => {
-  return (
-    <>
-      <VStack spacing="16px" alignItems="space-between">
-        <VStack spacing="8px">
-          <Fats />
-          <Sfa />
-          <Mufa />
-          <Pufa />
-        </VStack>
-        <Proteins />
-      </VStack>
-      <VStack spacing="16px">
-        <VStack spacing="8px">
-          <Carbohydrates />
-          <Sugar />
-          <Fiber />
-        </VStack>
-        <Salt />
-      </VStack>
-    </>
-  );
-};
-
-const Fats = () => {
+const FatsInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -301,7 +302,7 @@ const Fats = () => {
   );
 };
 
-const Sfa = () => {
+const SfaInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -322,7 +323,7 @@ const Sfa = () => {
   );
 };
 
-const Mufa = () => {
+const MufaInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -343,7 +344,7 @@ const Mufa = () => {
   );
 };
 
-const Pufa = () => {
+const PufaInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -364,7 +365,7 @@ const Pufa = () => {
   );
 };
 
-const Proteins = () => {
+const ProteinsInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -385,7 +386,7 @@ const Proteins = () => {
   );
 };
 
-const Carbohydrates = () => {
+const CarbohydratesInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -406,7 +407,7 @@ const Carbohydrates = () => {
   );
 };
 
-const Fiber = () => {
+const FiberInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -427,7 +428,7 @@ const Fiber = () => {
   );
 };
 
-const Sugar = () => {
+const SugarInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
@@ -447,7 +448,7 @@ const Sugar = () => {
     </FormElements.Wrapper>
   );
 };
-const Salt = () => {
+const SaltInputField = () => {
   return (
     <FormElements.Wrapper>
       <FormElements.LabelSection>
