@@ -2,7 +2,7 @@ import { Box, Tooltip, useColorModeValue } from "@chakra-ui/react";
 import React, { forwardRef, ReactNode } from "react";
 import { BsQuestion } from "react-icons/bs";
 
-export const CustomTooltip = ({ children, marginLeft }: { children: ReactNode; marginLeft: string }) => {
+export const CustomTooltip = ({ children, marginLeft }: TooltipProps) => {
   return (
     <Tooltip label={children} placement="top">
       <TooltipVisual marginLeft={marginLeft} />
@@ -12,7 +12,7 @@ export const CustomTooltip = ({ children, marginLeft }: { children: ReactNode; m
 
 type TooltipProps = {
   children?: string;
-  marginLeft: string;
+  marginLeft?: string;
 };
 
 const TooltipVisual = forwardRef<HTMLDivElement, TooltipProps>(

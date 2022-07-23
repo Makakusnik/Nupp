@@ -34,13 +34,14 @@ export const foodAdditives: FoodAdditive[] = [
 ]
 
 export type Alergen = {
-  name: string; 
+  name: string;
+  id: string; 
 }
 
 export const Alergens: Alergen[] = [
-  {name: 'nuts' },
-  {name: 'Sulfur Dioxide' },
-  {name: 'Shmixid' }
+  {name: 'nuts', id: '15' },
+  {name: 'Sulfur Dioxide', id:'25 '},
+  {name: 'Shmixid' , id:'16'}
 
 ]
 

@@ -30,7 +30,7 @@ export const Wrapper = ({ children }: ChildrenOnlyProps) => {
 
 export const LabelSection = ({ children }: ChildrenOnlyProps) => {
   return (
-    <Stack paddingTop="8px" w="fit-content">
+    <Stack paddingTop="8px" w="fit-content" display="flex" flexDirection="row" alignContent="start" spacing="0">
       {children}
     </Stack>
   );
@@ -73,7 +73,7 @@ export const ContainerSection = ({ children }: ChildrenOnlyProps) => {
 
 export const SelectedItem = ({ children }: ChildrenOnlyProps) => {
   return (
-    <HStack as="li" w="100%" px="8px" justifyContent={"space-evenly"}>
+    <HStack as="li" minW="100%" w="100%" px="8px" justifyContent={"space-between"}>
       {children}
     </HStack>
   );
