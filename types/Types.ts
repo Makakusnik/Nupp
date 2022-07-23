@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Url } from "url";
 
 export type Positionable = {
     top : string ;
@@ -17,27 +18,18 @@ export type FormProps = {
   placeholder?: string;
   name?: string;
 };
-export type FormFieldProps = {
-  leftAddon?: string;
-  type: "text" | "number" | "email";
-  rightAddon?: string;
-  paddingLeft?: string;
-  inputWidth?: string;
-  labelWidth?: string;
-  fieldWidth?: string;
-  tooltip?: string;
-};
 
 export type ChildrenOnlyProps= {
   children:  ReactNode | any[] | string ;
 };
 
-export type FormSelectProps<T> = {
-  data: T[];
-};
-
-export type SelectContainerProps<T> = {
-  data: T[];
-  
+export type VendorType = {
+  name: string;
+  url?: Url;
+  residence?: string;
+  image?: any;
 }
 
+export type VendorPricePairType = {
+  price: number;
+} & VendorType

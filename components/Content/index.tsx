@@ -1,1 +1,1 @@
-export { ProductDetailsSection } from "./Pages/products/add";
+export { ProductForm } from "./Pages/products/add/productAdd";
