@@ -7,7 +7,7 @@ import { LinkProps } from "..";
 export const NavigationLink = ({ href, children }: LinkProps) => (
   <NextLink href={href} passHref={true}>
     <LinkWrap>
-      <Link _hover={{}} fontWeight={500}>
+      <Link _hover={{}} href={href} fontWeight={500}>
         {children}
       </Link>
     </LinkWrap>
