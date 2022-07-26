@@ -36,9 +36,13 @@ export const LabelSection = ({ children }: ChildrenOnlyProps) => {
   );
 };
 
-export const MainSection = ({ children }: ChildrenOnlyProps) => {
+type MainSectionPros = {
+  width?: string;
+};
+
+export const MainSection = ({ children, width = "30ch" }: ChildrenOnlyProps & MainSectionPros) => {
   return (
-    <VStack maxW="30ch" minW="30ch" justifyContent={"space-between"}>
+    <VStack maxW={width} minW={width} justifyContent={"space-between"}>
       {children}
     </VStack>
   );
@@ -61,7 +65,7 @@ export const ContainerSection = ({ children }: ChildrenOnlyProps) => {
   return (
     <>
       {Array.isArray(children) && children.length > 0 ? (
-        <VStack as="ul" w="100%" spacing="8px" alignContent="center">
+        <VStack as="ul" w="100%" spacing="8px" alignItems={"start"}>
           {children}
         </VStack>
       ) : (

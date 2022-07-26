@@ -7,11 +7,12 @@ import * as Header from "../../components/Content/Header";
 import { DatabaseTable } from "../../components/Database/DatabaseTable";
 import { FilterBox } from "../../components/Database/Filters";
 import { BlobAnimatedJsx } from "../../components/Misc/BlobVector";
+import { PageContainer } from "../../components/Misc/Layout";
 import { dataBlue } from "../../testdata/blobData";
 
 const Products: NextPage = () => {
   return (
-    <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
+    <PageContainer>
       <Head>
         <title>Nupp | Products</title>
         <meta
@@ -24,8 +25,7 @@ const Products: NextPage = () => {
         <Header.MainSection>
           <Header.Title>Products</Header.Title>
           <Header.Description>
-            Here your good eating habits begin. Choose from variety of products
-            based on your preferences and our tips.
+            Here your good eating habits begin. Choose from variety of products based on your preferences and our tips.
           </Header.Description>
           <ButtonGroup>
             <Button variant="CTA">Find recommended products</Button>
@@ -35,12 +35,7 @@ const Products: NextPage = () => {
           </ButtonGroup>
         </Header.MainSection>
         <Header.ImageSection>
-          <BlobAnimatedJsx
-            id="svg1"
-            left="25%"
-            top="25%"
-            data={dataBlue}
-          ></BlobAnimatedJsx>
+          <BlobAnimatedJsx id="svg1" left="25%" top="25%" data={dataBlue}></BlobAnimatedJsx>
         </Header.ImageSection>
       </Header.Component>
       <CategoriesContainer />
@@ -51,7 +46,7 @@ const Products: NextPage = () => {
         <FilterBox />
         <DatabaseTable />
       </Container>
-    </Container>
+    </PageContainer>
   );
 };
 

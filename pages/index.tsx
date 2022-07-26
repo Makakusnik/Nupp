@@ -6,10 +6,11 @@ import { DatabaseTable } from "../components/Database/DatabaseTable";
 import { FilterBox } from "../components/Database/Filters";
 import { BlobAnimatedJsx } from "../components/Misc/BlobVector";
 import { dataBlue, dataPurp, dataRed } from "../testdata/blobData";
+import { PageContainer } from "../components/Misc/Layout";
 
 const Home: NextPage = () => {
   return (
-    <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
+    <PageContainer>
       <Head>
         <title>Nupp | Diet Tracker</title>
         <meta
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header.Component h={{ "2xl": 700 }}>
+      <Header.Component h={{ "2xl": 600 }}>
         <Header.MainSection>
           <Header.Title>
             NUTRITIOUS
@@ -26,30 +27,15 @@ const Home: NextPage = () => {
             APPLICATION
           </Header.Title>
           <Header.Description>
-            Looking for easy yet effective way to track your costs,
-            macronutrients and eating habits? Nupp will save you!
+            Looking for easy yet effective way to track your costs, macronutrients and eating habits? Nupp will save
+            you!
           </Header.Description>
           <Button variant="CTA">Find Diet Plan!</Button>
         </Header.MainSection>
         <Header.ImageSection>
-          <BlobAnimatedJsx
-            id="svg1"
-            left="155px"
-            top="50%"
-            data={dataBlue}
-          ></BlobAnimatedJsx>
-          <BlobAnimatedJsx
-            id="svg2"
-            left="26px"
-            top="30%"
-            data={dataPurp}
-          ></BlobAnimatedJsx>
-          <BlobAnimatedJsx
-            id="svg3"
-            left="130px"
-            top="20%"
-            data={dataRed}
-          ></BlobAnimatedJsx>
+          <BlobAnimatedJsx id="svg1" left="155px" top="50%" data={dataBlue}></BlobAnimatedJsx>
+          <BlobAnimatedJsx id="svg2" left="26px" top="30%" data={dataPurp}></BlobAnimatedJsx>
+          <BlobAnimatedJsx id="svg3" left="130px" top="20%" data={dataRed}></BlobAnimatedJsx>
         </Header.ImageSection>
       </Header.Component>
       <Container marginTop={"80px"} px="32px" maxW="container.lg">
@@ -59,7 +45,7 @@ const Home: NextPage = () => {
         <FilterBox></FilterBox>
         <DatabaseTable></DatabaseTable>
       </Container>
-    </Container>
+    </PageContainer>
   );
 };
 

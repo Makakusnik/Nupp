@@ -1,4 +1,15 @@
-import { FormLabel, InputGroup, Input, InputRightAddon, IconButton, Box, Text, FormControl } from "@chakra-ui/react";
+import {
+  FormLabel,
+  InputGroup,
+  Input,
+  InputRightAddon,
+  IconButton,
+  Box,
+  Text,
+  FormControl,
+  HStack,
+  Spacer,
+} from "@chakra-ui/react";
 import { useState, useRef, SyntheticEvent, useEffect } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 import { foodAdditives, FoodAdditive, Alergen, Alergens as alergens } from "../../../../../../testdata/data";
@@ -6,18 +17,7 @@ import { Select } from "../../../../../Input";
 import { CustomTooltip } from "../../../../../Misc/Tooltip";
 import * as FormElements from "../../../../../Input/Form/FormElements";
 import { VendorPricePairType } from "../../../../../../types/Types";
-
-const handleSimpleTextInput = (e: SyntheticEvent<HTMLInputElement>, setter: ((value: string) => void) | null) => {
-  if (setter) setter(e.currentTarget.value);
-};
-
-const handleSimpleNumberInput = (e: SyntheticEvent<HTMLInputElement>, setter: ((value: number) => void) | null) => {
-  if (setter) setter(Number(e.currentTarget.value));
-};
-
-type SimpleFieldType<T> = {
-  setter: ((value: T) => void) | null;
-};
+import { SimpleFieldType, handleSimpleTextInput, handleSimpleNumberInput } from "../../../..";
 
 type VendorPriceFieldProps = {
   setter: ((value: VendorPricePairType[]) => void) | null;
@@ -284,15 +284,16 @@ type AlergenItemProps = {
   name: string;
 };
 
-const AlergenItem = ({ name }: AlergenItemProps) => {
+export const AlergenItem = ({ name }: AlergenItemProps) => {
   return (
-    <>
+    <HStack as="li" w="100%">
       <Box w="8px" h="8px" bg={"red.500"} />
       <Text minW="18ch" maxW="18ch" noOfLines={1}>
         {name}
       </Text>
+      <Spacer />
       <IconButton aria-label="Remove Option" colorScheme="red" size="xs" icon={<MdClose size="24px" />}></IconButton>
-    </>
+    </HStack>
   );
 };
 

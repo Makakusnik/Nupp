@@ -5,17 +5,17 @@ import * as Header from "../../../components/Content/Header";
 import { GiMeal } from "react-icons/gi";
 import { FaAppleAlt } from "react-icons/fa";
 import { BigButton } from "../../../components/Input";
-import Link from "next/link";
+import { PageContainer } from "../../../components/Misc/Layout";
 
 const ProductsAdd: NextPage = () => {
   return (
-    <Container p="0" paddingTop={"88px"} w="100%" minW="100%">
+    <PageContainer>
       <Head>
         <title>Nupp | Add Product or Meal</title>
         <meta name="description" content="You can create and add product or meal to our database." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header.SmallHeader h={{ base: "300px" }} isTransparent={true}>
+      <Header.SmallHeader h={{ base: "500px" }} isTransparent={true}>
         <Header.MainSection>
           <Header.Title>Add Product or Meal</Header.Title>
           <Header.Description>
@@ -34,7 +34,7 @@ const ProductsAdd: NextPage = () => {
           </BigButton>
         </HStack>
       </Container>
-    </Container>
+    </PageContainer>
   );
 };
 
