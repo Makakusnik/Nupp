@@ -1,14 +1,5 @@
 import React, { ReactNode } from "react";
-import {
-  Container,
-  Flex,
-  Grid,
-  GridItem,
-  Heading as H,
-  Text,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Container, Flex, Grid, GridItem, Heading as H, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { ChildrenOnlyProps, FlexType } from "../../types/Types";
 
 type HeaderProps = {
@@ -16,22 +7,19 @@ type HeaderProps = {
   isTransparent?: boolean;
 };
 
-export const SmallHeader = ({
-  h,
-  children,
-  isTransparent,
-}: HeaderProps & ChildrenOnlyProps) => {
+export const SmallHeader = ({ h, children, isTransparent }: HeaderProps & ChildrenOnlyProps) => {
   const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
     <Container
       minW="100%"
-      minH={h && { ...h }}
+      minH={(h && { ...h }) || { "2xl": "500px" }}
       h="fit-content"
       bg={isTransparent ? "transparent" : headerBg}
-      alignItems="center"
       display="flex"
       as="header"
+      paddingTop={"80px"}
+      paddingBottom={"40px"}
     >
       <Grid
         display="flex"
@@ -48,11 +36,7 @@ export const SmallHeader = ({
   );
 };
 
-export const Component = ({
-  h,
-  children,
-  isTransparent,
-}: HeaderProps & ChildrenOnlyProps) => {
+export const Component = ({ h, children, isTransparent }: HeaderProps & ChildrenOnlyProps) => {
   const headerBg = useColorModeValue("gray.50", "gray.900");
 
   return (
@@ -61,7 +45,8 @@ export const Component = ({
       minH={(h && { ...h }) || { "2xl": "500px" }}
       h="fit-content"
       bg={isTransparent ? "transparent" : headerBg}
-      alignItems="center"
+      paddingTop={"80px"}
+      paddingBottom={"40px"}
       display="flex"
       as="header"
     >
@@ -107,10 +92,7 @@ export const MainSection = ({ children }: ChildrenOnlyProps) => {
   );
 };
 
-export const ImageSection = ({
-  children,
-  placeContent,
-}: ChildrenOnlyProps & FlexType) => {
+export const ImageSection = ({ children, placeContent }: ChildrenOnlyProps & FlexType) => {
   return (
     <GridItem w="40%" position="relative">
       <Flex placeContent={placeContent}>{children}</Flex>
