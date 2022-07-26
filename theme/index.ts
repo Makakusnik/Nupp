@@ -12,6 +12,13 @@ const config: ThemeConfig = {
 };
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      li: {
+        listStyleType: 'none',
+      }
+    },
+  },
   config: config,
   fonts: {
     heading: `'Lato', 'Inter', sans-serif`,
@@ -24,6 +31,5 @@ const theme = extendTheme({
     Input,
   },
 });
-
 
 export default theme;

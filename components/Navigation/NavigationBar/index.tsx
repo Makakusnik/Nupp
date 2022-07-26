@@ -77,10 +77,16 @@ export const NavigationBar = () => {
             <Link>NUPP</Link>
           </NextLink>
         </Center>
-        <HStack spacing="16px">
-          <NavigationLink href="/">Homepage</NavigationLink>
-          <NavigationLink href="/diets">Diets</NavigationLink>
-          <NavigationLink href="/products">Products</NavigationLink>
+        <HStack as="ul" spacing="16px">
+          <li>
+            <NavigationLink href="/">Homepage</NavigationLink>
+          </li>
+          <li>
+            <NavigationLink href="/diets">Diets</NavigationLink>
+          </li>
+          <li>
+            <NavigationLink href="/products">Products</NavigationLink>
+          </li>
         </HStack>
       </HStack>
       <SearchBarTwoOption />
