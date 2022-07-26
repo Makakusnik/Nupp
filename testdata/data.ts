@@ -45,6 +45,41 @@ export const Alergens: Alergen[] = [
 
 ]
 
+export type RecipeDataType = {
+  name: string;
+  id: string;
+}
+
+export const RecipeData = [
+  {name: "Chillic Con Carne", id:"ID1232"},
+  {name: "Buchty Na Pare", id:"ID22"},
+  {name: "Spagety Ala Boloňezeee", id:"13"},
+]
+
+export type IngredientType = {
+  name: string;
+  brandName: string;
+  id: string;
+  weight: number;
+}
+
+export const SelectedIngredients: IngredientType[] = [
+  {name: "Banana",brandName:'Ferrari', id:"12344",weight:153},
+  {name: "Chleba",brandName:'Luis Vuitton', id:"12349",weight:113},
+  {name: "Rozek",brandName:'Tesco', id:"12348",weight:45},
+]
+
+export type MarkType = {
+  name: string;
+  id: string;
+}
+
+export const MarkData = [
+  {name: "Healthy Fats", id:'1223'},
+  {name: "Fiber", id:'113'},
+  {name: "Antioxidants", id:'1233334'},
+]
+
 export var data: Data[] = [
   {
     name: "Shay Whitaker",
