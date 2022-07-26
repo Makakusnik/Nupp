@@ -5,7 +5,7 @@ Nupp is application made for tracking macro nutrients and costs of diet plans, l
 Goal of my Nupp is to help you spend less, eat healthier, organize and improve your eating habits.
 
 ## Current State
-**Currently** I Am designing Wireframes. You can check them out in [my figma profile](https://www.figma.com/file/iTka7dTUJdWCeK5Ma5bU0u/Nupp-Wireframes)
+**Currently** I am coding Forms, Login Widget + I will soon add profile page. After this I need to finetune some Chakra default settings for input elements like checkboxes etc.
 
 Application is at the beginning. 
 I want to explore whole proccess of making web application that means:
