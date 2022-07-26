@@ -18,10 +18,7 @@ import { MdOutlineSearch } from "react-icons/md";
 
 export const FilterBox = () => {
   const filterBg = useColorModeValue("gray.100", "gray.900");
-  const filterDetailColor = useColorModeValue(
-    "blackAlpha.700",
-    "whiteAlpha.600"
-  );
+  const filterDetailColor = useColorModeValue("blackAlpha.700", "whiteAlpha.600");
 
   return (
     <Container
@@ -46,28 +43,15 @@ export const FilterBox = () => {
             Diet Type
           </Text>
           <Stack marginTop="16px">
-            <Checkbox colorScheme="green" size="sm">
-              Vegan
-            </Checkbox>
-            <Checkbox colorScheme="green" size="sm">
-              Checkbox
-            </Checkbox>
+            <Checkbox size="md">Vegan</Checkbox>
+            <Checkbox size="md">Checkbox</Checkbox>
           </Stack>
         </GridItem>
         <GridItem w="100%" px="8px">
-          <Text
-            display="inline-flex"
-            fontSize="lg"
-            fontWeight="600"
-            alignItems="baseline"
-          >
+          <Text display="inline-flex" fontSize="lg" fontWeight="600" alignItems="baseline">
             Costs
           </Text>
-          <Text
-            display="inline-flex"
-            marginLeft="8px"
-            color={filterDetailColor}
-          >
+          <Text display="inline-flex" marginLeft="8px" color={filterDetailColor}>
             $
           </Text>
           <Stack marginTop="16px" px="8px">
@@ -80,19 +64,10 @@ export const FilterBox = () => {
           </Stack>
         </GridItem>
         <GridItem colSpan={2} w="100%" px="8px">
-          <Text
-            display="inline-flex"
-            fontSize="lg"
-            fontWeight="600"
-            alignItems="baseline"
-          >
+          <Text display="inline-flex" fontSize="lg" fontWeight="600" alignItems="baseline">
             Macro Nutrients
           </Text>
-          <Text
-            display="inline-flex"
-            marginLeft="8px"
-            color={filterDetailColor}
-          >
+          <Text display="inline-flex" marginLeft="8px" color={filterDetailColor}>
             g / 100 g
           </Text>
           <Stack marginTop="16px" px="8px">
