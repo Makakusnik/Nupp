@@ -1,7 +1,7 @@
 import { SyntheticEvent } from "react";
 
-export { MealForm } from "./Pages/products/add/mealAdd";
-export { ProductForm } from "./Pages/products/add/productAdd";
+export { MealForm } from "./Pages/products/add/meal";
+export { ProductForm } from "./Pages/products/add/product";
 
 export const handleSimpleTextInput = (
   e: SyntheticEvent<HTMLInputElement>,

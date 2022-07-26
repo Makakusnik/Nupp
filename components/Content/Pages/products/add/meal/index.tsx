@@ -5,7 +5,7 @@ import { Alergens } from "../../../../../../testdata/data";
 import { ProductFormContext } from "../../../../../Contexts/ProductFormContext";
 import * as FormDataFields from "../../../../../Input/Form/FormDataFields";
 import { MainHeading } from "../../../../../Input/Form/Header";
-import { AlergenItem } from "../productAdd/ProductFields";
+import { AlergenItem } from "../product/ProductFields";
 import { IngredientsField, MarksComponent, MealNameField, RecipeField } from "./MealFields";
 
 export const MealForm = () => {

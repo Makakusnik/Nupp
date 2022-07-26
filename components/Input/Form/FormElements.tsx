@@ -37,12 +37,12 @@ export const LabelSection = ({ children }: ChildrenOnlyProps) => {
 };
 
 type MainSectionPros = {
-  width?: string;
+  w?: string;
 };
 
-export const MainSection = ({ children, width = "30ch" }: ChildrenOnlyProps & MainSectionPros) => {
+export const MainSection = ({ children, w = "30ch" }: ChildrenOnlyProps & MainSectionPros) => {
   return (
-    <VStack maxW={width} minW={width} justifyContent={"space-between"}>
+    <VStack maxW={w} minW={w} justifyContent={"space-between"}>
       {children}
     </VStack>
   );
