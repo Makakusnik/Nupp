@@ -108,10 +108,16 @@ const MacroSummary = () => {
         <FormDataFields.Title>Energy </FormDataFields.Title>
         <FormDataFields.Wrapper>
           <FormDataFields.Value>
-            153 <abbr title="Kilo Calories">kcal</abbr>
+            153{" "}
+            <Text as="abbr" title="Kilo Calories">
+              kcal
+            </Text>
           </FormDataFields.Value>
           <FormDataFields.Value>
-            658 <abbr title="Kilo Calories">kJ</abbr>
+            658{" "}
+            <Text as="abbr" title="Kilo Calories">
+              kJ
+            </Text>
           </FormDataFields.Value>
         </FormDataFields.Wrapper>
       </FormDataFields.MainContainer>
@@ -121,38 +127,59 @@ const MacroSummary = () => {
             <FormDataFields.MainContainer>
               <FormDataFields.Title>Fats</FormDataFields.Title>
               <FormDataFields.Value>
-                52.12 <abbr title="grams">g</abbr>
+                52.12{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
             <FormDataFields.MainContainer>
               <FormDataFields.Title subLevel="8px">
-                <abbr title="Satturated Fatty Acids">SFA</abbr>
+                <Text as="abbr" title="Satturated Fatty Acids">
+                  SFA
+                </Text>
               </FormDataFields.Title>
               <FormDataFields.Value>
-                16.04 <abbr title="grams">g</abbr>
+                16.04{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
             <FormDataFields.MainContainer>
               <FormDataFields.Title subLevel="8px">
-                <abbr title="Monounsatturated Fatty Acids">MUFA</abbr>
+                <Text as="abbr" title="Monounsatturated Fatty Acids">
+                  MUFA
+                </Text>
               </FormDataFields.Title>
               <FormDataFields.Value>
-                10.61 <abbr title="grams">g</abbr>
+                10.61{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
             <FormDataFields.MainContainer>
               <FormDataFields.Title subLevel="8px">
-                <abbr title="Polyunsatturated Fatty Acids">PUFA</abbr>
+                <Text as="abbr" title="Polyunsatturated Fatty Acids">
+                  PUFA
+                </Text>
               </FormDataFields.Title>
               <FormDataFields.Value>
-                18.28 <abbr title="grams">g</abbr>
+                18.28{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
           </VStack>
           <FormDataFields.MainContainer>
             <FormDataFields.Title>Proteins</FormDataFields.Title>
             <FormDataFields.Value>
-              16.26 <abbr title="Kilo Calories">g</abbr>
+              16.26{" "}
+              <Text as="abbr" title="Kilo Calories">
+                g
+              </Text>
             </FormDataFields.Value>
           </FormDataFields.MainContainer>
         </VStack>
@@ -161,26 +188,38 @@ const MacroSummary = () => {
             <FormDataFields.MainContainer>
               <FormDataFields.Title>Crabohydrates</FormDataFields.Title>
               <FormDataFields.Value>
-                23.26 <abbr title="grams">g</abbr>
+                23.26{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
             <FormDataFields.MainContainer>
               <FormDataFields.Title subLevel="8px">Sugar</FormDataFields.Title>
               <FormDataFields.Value>
-                14.16 <abbr title="grams">g</abbr>
+                14.16{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
             <FormDataFields.MainContainer>
               <FormDataFields.Title subLevel="8px">Fiber</FormDataFields.Title>
               <FormDataFields.Value>
-                12.64 <abbr title="grams">g</abbr>
+                12.64{" "}
+                <Text as="abbr" title="grams">
+                  g
+                </Text>
               </FormDataFields.Value>
             </FormDataFields.MainContainer>
           </VStack>
           <FormDataFields.MainContainer>
             <FormDataFields.Title>Salt</FormDataFields.Title>
             <FormDataFields.Value>
-              10.86 <abbr title="Kilo Calories">g</abbr>
+              10.86{" "}
+              <Text as="abbr" title="Kilo Calories">
+                g
+              </Text>
             </FormDataFields.Value>
           </FormDataFields.MainContainer>
         </VStack>
@@ -204,10 +243,10 @@ export const AlergenSummaryItem = ({ name, productName }: AlergenItemProps) => {
   return (
     <HStack as="li" w="100%" fontSize="small">
       <Box w="8px" h="8px" bg={"red.500"} />
-      <Text w="fit-content" maxW="15ch" noOfLines={1}>
+      <Text as="abbr" w="fit-content" maxW="15ch" noOfLines={1}>
         {name}
       </Text>
-      <Text w="fit-content" maxW="15ch" color="gray.500" noOfLines={1}>
+      <Text as="abbr" w="fit-content" maxW="15ch" color="gray.500" noOfLines={1}>
         {productName}
       </Text>
     </HStack>
