@@ -9,15 +9,20 @@ export interface Data {
   avgPrice: number;
 }
 
-export var categoriesData: string[] = [
-  "Obilniny",
-  "Pečivo",
-  "Jogurty",
-  "Mäso",
-  "Sladkosti",
-  "Bezlepkové Pečivo",
-  "Nápoje",
-  "Proteinové Milkshakey",
+export type CategoryType = {
+  name: string;
+  id: string;
+};
+
+export var categoriesData: CategoryType[] = [
+  { name: "Obilniny", id: "1" },
+  { name: "Pečivo", id: "2" },
+  { name: "Jogurty", id: "3" },
+  { name: "Mäso", id: "4" },
+  { name: "Sladkosti", id: "5" },
+  { name: "Bezlepkové Pečivo", id: "67" },
+  { name: "Nápoje", id: "6" },
+  { name: "Proteinové Milkshakey", id: "8" },
 ];
 
 export type FoodAdditive = {
@@ -25,60 +30,59 @@ export type FoodAdditive = {
   name: string;
   type: "healthy" | "neutral" | "dangerous";
   id: string;
-}
+};
 
 export const foodAdditives: FoodAdditive[] = [
-  {id: 'fadk',code: "E126", name: "Aluminium", type: "dangerous"},
-  {id: 'faak',code: "E152", name: "Gazorsd oiasdj fojasdfoi jasdoifjdosajfodsj oipazor", type: "healthy"},
-  {id: 'fsak',code: "E015", name: "Flumstick", type: "neutral"},
-]
+  { id: "fadk", code: "E126", name: "Aluminium", type: "dangerous" },
+  { id: "faak", code: "E152", name: "Gazorsd oiasdj fojasdfoi jasdoifjdosajfodsj oipazor", type: "healthy" },
+  { id: "fsak", code: "E015", name: "Flumstick", type: "neutral" },
+];
 
 export type Alergen = {
   name: string;
-  id: string; 
-}
+  id: string;
+};
 
 export const Alergens: Alergen[] = [
-  {name: 'nuts', id: '15' },
-  {name: 'Sulfur Dioxide', id:'25 '},
-  {name: 'Shmixid' , id:'16'}
-
-]
+  { name: "nuts", id: "15" },
+  { name: "Sulfur Dioxide", id: "25 " },
+  { name: "Shmixid", id: "16" },
+];
 
 export type RecipeDataType = {
   name: string;
   id: string;
-}
+};
 
 export const RecipeData = [
-  {name: "Chillic Con Carne", id:"ID1232"},
-  {name: "Buchty Na Pare", id:"ID22"},
-  {name: "Spagety Ala Boloňezeee", id:"13"},
-]
+  { name: "Chillic Con Carne", id: "ID1232" },
+  { name: "Buchty Na Pare", id: "ID22" },
+  { name: "Spagety Ala Boloňezeee", id: "13" },
+];
 
 export type IngredientType = {
   name: string;
   brandName: string;
   id: string;
   weight: number;
-}
+};
 
 export const SelectedIngredients: IngredientType[] = [
-  {name: "Banana",brandName:'Ferrari', id:"12344",weight:153},
-  {name: "Chleba",brandName:'Luis Vuitton', id:"12349",weight:113},
-  {name: "Rozek",brandName:'Tesco', id:"12348",weight:45},
-]
+  { name: "Banana", brandName: "Ferrari", id: "12344", weight: 153 },
+  { name: "Chleba", brandName: "Luis Vuitton", id: "12349", weight: 113 },
+  { name: "Rozek", brandName: "Tesco", id: "12348", weight: 45 },
+];
 
 export type MarkType = {
   name: string;
   id: string;
-}
+};
 
 export const MarkData = [
-  {name: "Healthy Fats", id:'1223'},
-  {name: "Fiber", id:'113'},
-  {name: "Antioxidants", id:'1233334'},
-]
+  { name: "Healthy Fats", id: "1223" },
+  { name: "Fiber", id: "113" },
+  { name: "Antioxidants", id: "1233334" },
+];
 
 export var data: Data[] = [
   {

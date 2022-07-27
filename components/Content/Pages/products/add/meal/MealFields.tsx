@@ -28,17 +28,15 @@ import * as FormElements from "../../../../../Input/Form/FormElements";
 
 export const MealNameField = ({ setter }: SimpleFieldType<string>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl isRequired>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="mealName" whiteSpace={"nowrap"}>
-            Meal Name
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="mealName"></Input>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="mealName" whiteSpace={"nowrap"}>
+          Meal Name
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="mealName"></Input>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -51,23 +49,21 @@ type RecipeComponentProps = {
 export const RecipeField = ({ values, setter }: RecipeComponentProps) => {
   const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {};
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="correspondingRecipe" whiteSpace={"nowrap"}>
-            Correspodning Recipe
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Select
-            id={"correspondingRecipe"}
-            name={"Recipe"}
-            placeholder={"Pick Recipe"}
-            data={RecipeData}
-            onChange={handleSelect}
-          />
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="correspondingRecipe" whiteSpace={"nowrap"}>
+          Correspodning Recipe
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Select
+          id={"correspondingRecipe"}
+          name={"Recipe"}
+          placeholder={"Pick Recipe"}
+          data={RecipeData}
+          onChange={handleSelect}
+        />
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -80,23 +76,21 @@ type MarkComponentProps = {
 export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
   const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {};
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="marks" whiteSpace={"nowrap"}>
-            Marks
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Select id={"marks"} name={"Marks"} placeholder={"Pick Mark"} data={MarkData} onChange={handleSelect} />
-          <FormElements.ContainerSection>
-            {values &&
-              values.map((item) => {
-                return <FormElements.SelectedItem key={item.id}>{}</FormElements.SelectedItem>;
-              })}
-          </FormElements.ContainerSection>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="marks" whiteSpace={"nowrap"}>
+          Marks
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Select id={"marks"} name={"Marks"} placeholder={"Pick Mark"} data={MarkData} onChange={handleSelect} />
+        <FormElements.ContainerSection>
+          {values &&
+            values.map((item) => {
+              return <FormElements.SelectedItem key={item.id}>{}</FormElements.SelectedItem>;
+            })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -104,37 +98,30 @@ export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
 export const IngredientsField = ({ values, setter }: RecipeComponentProps) => {
   const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {};
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="ingredients" whiteSpace={"nowrap"} paddingLeft="40px">
-            Ingredients
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection width="100%">
-          <HStack w="100%" px="40px" alignItems={"start"} spacing="32px">
-            <SmallDataTable>
-              {data.map((item, index) => {
-                return <SmallTableRow ariaLabelIconButton="Add product to ingredients." key={index} item={item} />;
-              })}
-            </SmallDataTable>
-            <FormElements.ContainerSection>
-              {SelectedIngredients.map((item) => {
-                return (
-                  <FormElements.SelectedItem>
-                    <SelectedIngredient
-                      name={item.name}
-                      key={item.id}
-                      weight={item.weight}
-                      brandName={item.brandName}
-                    />
-                  </FormElements.SelectedItem>
-                );
-              })}
-            </FormElements.ContainerSection>
-          </HStack>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="ingredients" whiteSpace={"nowrap"} paddingLeft="40px">
+          Ingredients
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection w="100%">
+        <HStack w="100%" px="40px" alignItems={"start"} spacing="32px">
+          <SmallDataTable>
+            {data.map((item, index) => {
+              return <SmallTableRow ariaLabelIconButton="Add product to ingredients." key={index} item={item} />;
+            })}
+          </SmallDataTable>
+          <FormElements.ContainerSection>
+            {SelectedIngredients.map((item) => {
+              return (
+                <FormElements.SelectedItem>
+                  <SelectedIngredient name={item.name} key={item.id} weight={item.weight} brandName={item.brandName} />
+                </FormElements.SelectedItem>
+              );
+            })}
+          </FormElements.ContainerSection>
+        </HStack>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };

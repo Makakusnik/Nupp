@@ -1,5 +1,5 @@
 import { Box, VStack, Button, Container, HStack } from "@chakra-ui/react";
-import { useContext, FormEvent } from "react";
+import { useContext, FormEvent, SyntheticEvent } from "react";
 import { ProductFormContext } from "../../../../../Contexts/ProductFormContext";
 import { MainHeading } from "../../../../../Input/Form/Header";
 import { MdCheck } from "react-icons/md";
@@ -23,9 +23,10 @@ import {
 
 export const ProductForm = () => {
   const { ...ever } = useContext(ProductFormContext);
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(ever);
+    const data = new FormData(e.target as HTMLFormElement);
+    console.log([...data]);
   };
   return (
     <form onSubmit={onSubmit}>

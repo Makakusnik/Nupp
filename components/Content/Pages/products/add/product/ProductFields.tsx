@@ -70,59 +70,57 @@ export const VendorAndPriceComponent = ({ setter, values }: VendorPriceFieldProp
   useEffect(() => {}, []);
 
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
-            Vendor {"&"} Price
-          </FormLabel>
-        </FormElements.LabelSection>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
+          Vendor {"&"} Price
+        </FormLabel>
+      </FormElements.LabelSection>
 
-        <FormElements.MainSection>
-          <FormElements.InputSection>
-            <Select
-              id={"vendorPrice"}
-              name={"Vendor And Price"}
-              placeholder={"Pick Vendor"}
-              data={foodAdditives}
+      <FormElements.MainSection>
+        <FormElements.InputSection>
+          <Select
+            id={"vendorPrice"}
+            name={"Vendor And Price"}
+            placeholder={"Pick Vendor"}
+            data={foodAdditives}
+            onChange={isValid}
+            ref={selectRef}
+          />
+          <InputGroup w="19ch">
+            <Input
+              ref={inputRef}
+              min={0}
+              max={999.99}
+              p="2"
+              type={"number"}
+              id="VendorPrice"
               onChange={isValid}
-              ref={selectRef}
+              step="0.01"
             />
-            <InputGroup w="19ch">
-              <Input
-                ref={inputRef}
-                min={0}
-                max={999.99}
-                p="2"
-                type={"number"}
-                id="VendorPrice"
-                onChange={isValid}
-                step="0.01"
-              />
-              <InputRightAddon>$</InputRightAddon>
-            </InputGroup>
-            <IconButton
-              isDisabled={isButtonDisabled}
-              onClick={handleAdd}
-              aria-label="Add Vendor & Price pair."
-              icon={<MdAdd size="24px" />}
-              colorScheme="green"
-              size="xs"
-            />
-          </FormElements.InputSection>
-          <FormElements.ContainerSection>
-            {values &&
-              values.length !== 0 &&
-              values.map((item, index) => {
-                return (
-                  <FormElements.SelectedItem key={index}>
-                    <VendorPricePair name={item.name} price={item.price}></VendorPricePair>
-                  </FormElements.SelectedItem>
-                );
-              })}
-          </FormElements.ContainerSection>
-        </FormElements.MainSection>
-      </FormControl>
+            <InputRightAddon>$</InputRightAddon>
+          </InputGroup>
+          <IconButton
+            isDisabled={isButtonDisabled}
+            onClick={handleAdd}
+            aria-label="Add Vendor & Price pair."
+            icon={<MdAdd size="24px" />}
+            colorScheme="green"
+            size="xs"
+          />
+        </FormElements.InputSection>
+        <FormElements.ContainerSection>
+          {values &&
+            values.length !== 0 &&
+            values.map((item, index) => {
+              return (
+                <FormElements.SelectedItem key={index}>
+                  <VendorPricePair name={item.name} price={item.price}></VendorPricePair>
+                </FormElements.SelectedItem>
+              );
+            })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -194,38 +192,31 @@ export const FoodAdditivesComponent = ({ values, setter }: FoodAdditivesComponen
     setter && values && setter([foodAdditives.filter((item) => item.name === value)[0], ...values]);
   };
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
-            Food Additives
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Select
-            id={"foodAdditives"}
-            name={"Food Additives"}
-            placeholder={"Pick an Additive"}
-            data={foodAdditives}
-            onChange={handleSelect}
-          />
-          <FormElements.ContainerSection>
-            {values &&
-              values.map((item) => {
-                return (
-                  <FormElements.SelectedItem key={item.id}>
-                    <FoodAdditiveItem
-                      code={item.code}
-                      name={item.name}
-                      type={item.type}
-                      id={item.id}
-                    ></FoodAdditiveItem>
-                  </FormElements.SelectedItem>
-                );
-              })}
-          </FormElements.ContainerSection>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="foodAdditives" whiteSpace={"nowrap"}>
+          Food Additives
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Select
+          id={"foodAdditives"}
+          name={"Food Additives"}
+          placeholder={"Pick an Additive"}
+          data={foodAdditives}
+          onChange={handleSelect}
+        />
+        <FormElements.ContainerSection>
+          {values &&
+            values.map((item) => {
+              return (
+                <FormElements.SelectedItem key={item.id}>
+                  <FoodAdditiveItem code={item.code} name={item.name} type={item.type} id={item.id}></FoodAdditiveItem>
+                </FormElements.SelectedItem>
+              );
+            })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -249,33 +240,31 @@ export const AlergensComponent = ({ values, setter }: AlergensComponentProps) =>
     setter && values && setter([alergens.filter((item) => item.name === value)[0], ...values]);
   };
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="alergens" whiteSpace={"nowrap"}>
-            Alergens
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Select
-            id={"alergens"}
-            name={"Alergens"}
-            placeholder={"Pick an Alergen"}
-            data={alergens}
-            onChange={handleSelect}
-          />
-          <FormElements.ContainerSection>
-            {values &&
-              values.map((item) => {
-                return (
-                  <FormElements.SelectedItem key={item.id}>
-                    <AlergenItem name={item.name}></AlergenItem>
-                  </FormElements.SelectedItem>
-                );
-              })}
-          </FormElements.ContainerSection>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="alergens" whiteSpace={"nowrap"}>
+          Alergens
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Select
+          id={"alergens"}
+          name={"Alergens"}
+          placeholder={"Pick an Alergen"}
+          data={alergens}
+          onChange={handleSelect}
+        />
+        <FormElements.ContainerSection>
+          {values &&
+            values.map((item) => {
+              return (
+                <FormElements.SelectedItem key={item.id}>
+                  <AlergenItem name={item.name}></AlergenItem>
+                </FormElements.SelectedItem>
+              );
+            })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
@@ -299,261 +288,236 @@ export const AlergenItem = ({ name }: AlergenItemProps) => {
 
 export const ProductNameField = ({ setter }: SimpleFieldType<string>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl isRequired>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="productName" whiteSpace={"nowrap"}>
-            Product Name
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="productName"></Input>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="productName" whiteSpace={"nowrap"}>
+          Product Name
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Input
+          onChange={(e) => handleSimpleTextInput(e, setter)}
+          name="productName"
+          type="text"
+          id="productName"
+        ></Input>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const BrandNameField = ({ setter }: SimpleFieldType<string>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl isRequired>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="brandName" whiteSpace={"nowrap"}>
-            Brand Name
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="brandName"></Input>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="brandName" whiteSpace={"nowrap"}>
+          Brand Name
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="brandName"></Input>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const PackingWeight = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl isRequired>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="packingWeight" whiteSpace={"nowrap"}>
-            Packing Weight
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection>
-          <InputGroup>
-            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} id={"packingWeight"} type="number" />
-            <InputRightAddon>grams</InputRightAddon>
-          </InputGroup>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="packingWeight" whiteSpace={"nowrap"}>
+          Packing Weight
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection>
+        <InputGroup>
+          <Input onChange={(e) => handleSimpleNumberInput(e, setter)} id={"packingWeight"} type="number" />
+          <InputRightAddon>grams</InputRightAddon>
+        </InputGroup>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const FatsInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" htmlFor="fats" whiteSpace={"nowrap"}>
-            Fats
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="fats"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" htmlFor="fats" whiteSpace={"nowrap"}>
+          Fats
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="fats"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const SfaInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel
-            marginRight="4px"
-            w={"fit-content"}
-            paddingLeft="16px"
-            display="flex"
-            htmlFor="saturatedFattyAcids"
-          >
-            SFA
-          </FormLabel>
-          <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="saturatedFattyAcids"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="saturatedFattyAcids">
+          SFA
+        </FormLabel>
+        <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="saturatedFattyAcids"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const MufaInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
-            MUFA
-          </FormLabel>
-          <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
+          MUFA
+        </FormLabel>
+        <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const PufaInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
-            PUFA
-          </FormLabel>
-          <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
+          PUFA
+        </FormLabel>
+        <CustomTooltip>Saturated Fatty Acids</CustomTooltip>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const ProteinsInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName">
-            Proteins
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName">
+          Proteins
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const CarbohydratesInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName">
-            Carbohydrates
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName">
+          Carbohydrates
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const FiberInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
-            Fiber
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
+          Fiber
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const SugarInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
-            Sugar
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} paddingLeft="16px" display="flex" htmlFor="productName">
+          Sugar
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
 
 export const SaltInputField = ({ setter }: SimpleFieldType<number>) => {
   return (
-    <FormElements.Wrapper>
-      <FormControl w="100%" isRequired display="flex" flexDirection={"row"} justifyContent="space-between">
-        <FormElements.LabelSection>
-          <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName" mx="0">
-            Salt
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.SmallMainSection>
-          <FormElements.InputSection>
-            <InputGroup>
-              <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
-              <InputRightAddon>g</InputRightAddon>
-            </InputGroup>
-          </FormElements.InputSection>
-        </FormElements.SmallMainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={true} direction="row">
+      <FormElements.LabelSection>
+        <FormLabel marginRight="4px" w={"fit-content"} display="flex" htmlFor="productName" mx="0">
+          Salt
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.SmallMainSection>
+        <FormElements.InputSection>
+          <InputGroup>
+            <Input onChange={(e) => handleSimpleNumberInput(e, setter)} type="text" id="productName"></Input>
+            <InputRightAddon>g</InputRightAddon>
+          </InputGroup>
+        </FormElements.InputSection>
+      </FormElements.SmallMainSection>
     </FormElements.Wrapper>
   );
 };
