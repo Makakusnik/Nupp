@@ -1,4 +1,4 @@
-import { HStack, Stack, VStack } from "@chakra-ui/react";
+import { FormControl, HStack, Stack, StackDirection, VStack } from "@chakra-ui/react";
 import { ChildrenOnlyProps } from "../../../types/Types";
 
 /* 
@@ -20,11 +20,18 @@ import { ChildrenOnlyProps } from "../../../types/Types";
     </SelectInput.Wrapper>
 */
 
-export const Wrapper = ({ children }: ChildrenOnlyProps) => {
+type WrapperProps = {
+  isRequired: boolean;
+  direction?: StackDirection;
+} & ChildrenOnlyProps;
+
+export const Wrapper = ({ children, direction = "column", isRequired }: WrapperProps) => {
   return (
-    <HStack w="100%" alignItems={"start"} justifyContent="space-between">
-      {children}
-    </HStack>
+    <FormControl isRequired={isRequired}>
+      <Stack w="100%" alignItems={"start"} spacing="0" direction={direction} justifyContent="space-between">
+        {children}
+      </Stack>
+    </FormControl>
   );
 };
 
@@ -60,12 +67,29 @@ export const InputSection = ({ children }: ChildrenOnlyProps) => {
   return <HStack maxW="100%">{children}</HStack>;
 };
 
+type ContainerProps = {
+  maxW?: string;
+  minW?: string;
+  maxH?: string;
+  minH?: string;
+} & ChildrenOnlyProps;
+
 /* If there is not children, component will not be rendered. */
-export const ContainerSection = ({ children }: ChildrenOnlyProps) => {
+export const ContainerSection = ({ children, maxW, minW, maxH, minH }: ContainerProps) => {
   return (
     <>
       {Array.isArray(children) && children.length > 0 ? (
-        <VStack as="ul" w="100%" spacing="8px" alignItems={"start"}>
+        <VStack
+          as="ul"
+          maxW={maxW}
+          minW={minW}
+          maxH={maxH}
+          minH={minH}
+          overflowY="auto"
+          w="100%"
+          spacing="8px"
+          alignItems={"start"}
+        >
           {children}
         </VStack>
       ) : (
