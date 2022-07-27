@@ -4,17 +4,19 @@ import {
   Container,
   Grid,
   GridItem,
-  IconButton,
-  Select,
   Stack,
+  Tag,
+  TagCloseButton,
+  TagLabel,
   Text,
   useColorModeValue,
-  VStack,
 } from "@chakra-ui/react";
-import { categoriesData } from "../../testdata/data";
-import { SelectWTags } from "../Input/SelectInput/SelectWTags";
+import { categoriesData, CategoryType } from "../../testdata/data";
 import { RangeSliderWInput } from "../Input/Sliders/RangeSliders";
 import { MdOutlineSearch } from "react-icons/md";
+import * as FormElements from "../../components/Input/Form/FormElements";
+import { Select } from "../Input";
+import { SyntheticEvent, useState } from "react";
 
 export const FilterBox = () => {
   const filterBg = useColorModeValue("gray.100", "gray.900");
@@ -33,10 +35,10 @@ export const FilterBox = () => {
     >
       <Grid templateColumns="1.25fr 0.75fr repeat(3, 1fr)" gap="16px">
         <GridItem w="100%" px="8px">
-          <Text fontSize="lg" fontWeight="600">
+          <Text marginBottom="16px" fontSize="lg" fontWeight="600">
             Categories
           </Text>
-          <SelectWTags data={categoriesData}></SelectWTags>
+          <CategoriesSelectField />
         </GridItem>
         <GridItem w="100%" px="8px">
           <Text fontSize="lg" fontWeight="600">
@@ -119,5 +121,55 @@ export const FilterBox = () => {
         Search
       </Button>
     </Container>
+  );
+};
+
+const CategoriesSelectField = () => {
+  const [selectedItems, setSelectedItems] = useState<CategoryType[]>([]);
+  const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {
+    const value = e.currentTarget.value;
+    if (e.currentTarget.selectedIndex === 0 || (selectedItems && selectedItems.some((item) => item.name === value))) {
+      e.currentTarget.selectedIndex = 0;
+      return;
+    }
+    setSelectedItems([categoriesData.filter((item) => item.name === value)[0], ...selectedItems]);
+    e.currentTarget.selectedIndex = 0;
+  };
+  const handleRemove = (e: SyntheticEvent, name: string) => {
+    setSelectedItems(selectedItems.filter((item) => item.name !== name));
+  };
+
+  return (
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.MainSection w="100%">
+        <Select
+          data={categoriesData}
+          name="Categories"
+          placeholder="Pick Category"
+          id="categories"
+          onChange={handleSelect}
+        />
+        <FormElements.ContainerSection maxH="132px">
+          {selectedItems.map((item) => {
+            return <CategoryItem name={item.name} onClick={(e) => handleRemove(e, item.name)}></CategoryItem>;
+          })}
+        </FormElements.ContainerSection>
+      </FormElements.MainSection>
+    </FormElements.Wrapper>
+  );
+};
+
+type ItemProps = {
+  name: string;
+  onClick: (e: SyntheticEvent) => void;
+};
+
+const CategoryItem = ({ onClick, name }: ItemProps) => {
+  const tagFontColor = useColorModeValue("gray.700", "gray.900");
+  return (
+    <Tag as="li" size="sm" colorScheme="green" color={tagFontColor} bg="green.300">
+      <TagLabel>{name}</TagLabel>
+      <TagCloseButton onClick={onClick} />
+    </Tag>
   );
 };
