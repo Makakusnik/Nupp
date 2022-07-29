@@ -2,7 +2,7 @@ import { Select as SelectInput } from "@chakra-ui/react";
 import { forwardRef, ReactNode, Ref, SyntheticEvent } from "react";
 
 export type SelectProps<T> = {
-  name: string;
+  name?: string;
   id: string;
   placeholder?: string;
   data: T[];

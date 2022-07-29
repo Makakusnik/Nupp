@@ -5,7 +5,6 @@ import {
   Container,
   Divider,
   Flex,
-  FormControl,
   FormLabel,
   HStack,
   IconButton,
@@ -23,10 +22,10 @@ import {
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import { BsMoonStarsFill, BsSunFill, BsFillPersonFill, BsGoogle, BsFacebook } from "react-icons/bs";
-import { SearchBarTwoOption } from "../../Input";
 import { NavigationLink } from "./NavigationBarLink";
 import * as FormElements from "../../Input/Form/FormElements";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { SearchBar } from "../../Input/SearchBar/SearchBar";
 
 export const NavigationBar = () => {
   const [height, setHeight] = useState<string>("88px");
@@ -89,7 +88,7 @@ export const NavigationBar = () => {
           </li>
         </HStack>
       </HStack>
-      <SearchBarTwoOption />
+      <SearchBar />
       <HStack spacing={"16px"}>
         <ColorModeButton />
         <LoginButton />
@@ -145,17 +144,15 @@ const LoginWindow = () => {
         <Text fontWeight="bold" fontSize="14px">
           LOG IN TO YOUR ACCOUNT
         </Text>
-        <FormElements.Wrapper>
-          <FormControl>
-            <FormElements.LabelSection>
-              <FormLabel htmlFor="email" whiteSpace={"nowrap"}>
-                Email:
-              </FormLabel>
-            </FormElements.LabelSection>
-            <FormElements.MainSection w="100%">
-              <Input onChange={(e) => {}} type="email" id="email"></Input>
-            </FormElements.MainSection>
-          </FormControl>
+        <FormElements.Wrapper isRequired={false}>
+          <FormElements.LabelSection>
+            <FormLabel htmlFor="email" whiteSpace={"nowrap"}>
+              Email:
+            </FormLabel>
+          </FormElements.LabelSection>
+          <FormElements.MainSection w="100%">
+            <Input onChange={(e) => {}} type="email" id="email"></Input>
+          </FormElements.MainSection>
         </FormElements.Wrapper>
         <PasswordField />
         <Spacer />
@@ -187,28 +184,26 @@ const PasswordField = () => {
     setPasswordVisible(!isPasswordVisible);
   };
   return (
-    <FormElements.Wrapper>
-      <FormControl>
-        <FormElements.LabelSection>
-          <FormLabel htmlFor="password" whiteSpace={"nowrap"}>
-            Password:
-          </FormLabel>
-        </FormElements.LabelSection>
-        <FormElements.MainSection w="100%">
-          <InputGroup>
-            <Input type={isPasswordVisible ? "text" : "password"} id="password" />
-            <InputRightElement>
-              <IconButton
-                aria-label="Show password"
-                size="sm"
-                onClick={togglePasswordVisibility}
-                variant="ghost"
-                icon={isPasswordVisible ? <MdVisibility size="16px" /> : <MdVisibilityOff size="16px" />}
-              />
-            </InputRightElement>
-          </InputGroup>
-        </FormElements.MainSection>
-      </FormControl>
+    <FormElements.Wrapper isRequired={false}>
+      <FormElements.LabelSection>
+        <FormLabel htmlFor="password" whiteSpace={"nowrap"}>
+          Password:
+        </FormLabel>
+      </FormElements.LabelSection>
+      <FormElements.MainSection w="100%">
+        <InputGroup>
+          <Input type={isPasswordVisible ? "text" : "password"} id="password" />
+          <InputRightElement>
+            <IconButton
+              aria-label="Show password"
+              size="sm"
+              onClick={togglePasswordVisibility}
+              variant="ghost"
+              icon={isPasswordVisible ? <MdVisibility size="16px" /> : <MdVisibilityOff size="16px" />}
+            />
+          </InputRightElement>
+        </InputGroup>
+      </FormElements.MainSection>
     </FormElements.Wrapper>
   );
 };

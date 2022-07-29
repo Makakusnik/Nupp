@@ -2,7 +2,6 @@ import { Box, Container } from "@chakra-ui/react";
 import { FaAppleAlt } from "react-icons/fa";
 
 import * as Header from "../../../components/Content/Header";
-import { ProductFormProvider } from "../../../components/Contexts/ProductFormContext";
 import { ProductForm } from "../../../components/Content";
 import Head from "next/head";
 import { PageContainer } from "../../../components/Misc/Layout";
@@ -26,9 +25,7 @@ export const AddProduct = () => {
         </Header.SmallHeader>
       </Container>
       <Container maxW="container.md">
-        <ProductFormProvider>
-          <ProductForm />
-        </ProductFormProvider>
+        <ProductForm />
       </Container>
     </PageContainer>
   );
