@@ -23,12 +23,20 @@ import { ChildrenOnlyProps } from "../../../types/Types";
 type WrapperProps = {
   isRequired: boolean;
   direction?: StackDirection;
+  placeContent?: string;
+  placeItems?: string;
 } & ChildrenOnlyProps;
 
-export const Wrapper = ({ children, direction = "column", isRequired }: WrapperProps) => {
+export const Wrapper = ({
+  children,
+  direction = "column",
+  isRequired,
+  placeContent = "start space-between",
+  placeItems = "start start",
+}: WrapperProps) => {
   return (
     <FormControl isRequired={isRequired}>
-      <Stack w="100%" alignItems={"start"} spacing="0" direction={direction} justifyContent="space-between">
+      <Stack w="100%" placeContent={placeContent} placeItems={placeItems} spacing="0" direction={direction}>
         {children}
       </Stack>
     </FormControl>
@@ -37,7 +45,7 @@ export const Wrapper = ({ children, direction = "column", isRequired }: WrapperP
 
 export const LabelSection = ({ children }: ChildrenOnlyProps) => {
   return (
-    <Stack paddingTop="8px" w="fit-content" display="flex" flexDirection="row" alignContent="start" spacing="0">
+    <Stack w="fit-content" display="flex" flexDirection="row" alignContent="start" spacing="0">
       {children}
     </Stack>
   );
@@ -49,7 +57,7 @@ type MainSectionPros = {
 
 export const MainSection = ({ children, w = "30ch" }: ChildrenOnlyProps & MainSectionPros) => {
   return (
-    <VStack maxW={w} minW={w} justifyContent={"space-between"}>
+    <VStack maxW={w} minW={w}>
       {children}
     </VStack>
   );
