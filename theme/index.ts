@@ -5,18 +5,20 @@ import { Checkbox } from "./Checkbox";
 import { Select } from "./Select";
 import { Button } from "./Button";
 import { Input } from "./Input";
-
 const config: ThemeConfig = {
   initialColorMode: "light",
   useSystemColorMode: true,
 };
 
 const theme = extendTheme({
+  shadows: {
+    outline: "0 0 0 2px #48BB78",
+  },
   styles: {
     global: {
       li: {
-        listStyleType: 'none',
-      }
+        listStyleType: "none",
+      },
     },
   },
   config: config,
