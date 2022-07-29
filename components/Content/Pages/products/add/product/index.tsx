@@ -1,6 +1,5 @@
 import { Box, VStack, Button, Container, HStack } from "@chakra-ui/react";
-import { useContext, FormEvent, SyntheticEvent } from "react";
-import { ProductFormContext } from "../../../../../Contexts/ProductFormContext";
+import { SyntheticEvent, useState } from "react";
 import { MainHeading } from "../../../../../Input/Form/Header";
 import { MdCheck } from "react-icons/md";
 import {
@@ -20,19 +19,33 @@ import {
   FoodAdditivesComponent,
   AlergensComponent,
 } from "./ProductFields";
+import { VendorPricePairType } from "../../../../../../types/Types";
+import { Alergen, FoodAdditive } from "../../../../../../testdata/data";
 
 export const ProductForm = () => {
-  const { ...ever } = useContext(ProductFormContext);
+  const [vendorAndPrice, vendorAndPriceValuesSetter] = useState<VendorPricePairType[]>([]);
+  const [foodAdditives, foodAdditivesSetter] = useState<FoodAdditive[]>([]);
+  const [alergens, alergensSetter] = useState<Alergen[]>([]);
+
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
-    console.log([...data]);
+    data.append("VendorPrices", JSON.stringify(vendorAndPrice));
+    data.append("Food Additives", JSON.stringify(foodAdditives));
+    data.append("Alergens", JSON.stringify(alergens));
   };
   return (
     <form onSubmit={onSubmit}>
       <MainHeading>Product Details</MainHeading>
       <HStack marginTop="24px" alignItems={"start"} justifyContent="center">
-        <ProductDetailsSection />
+        <VStack w="fit-content" px="16px" spacing="16px">
+          <ProductNameField />
+          <BrandNameField />
+          <PackingWeight />
+          <VendorAndPriceComponent setter={vendorAndPriceValuesSetter} values={vendorAndPrice} />
+          <FoodAdditivesComponent setter={foodAdditivesSetter} values={foodAdditives} />
+          <AlergensComponent setter={alergensSetter} values={alergens} />
+        </VStack>
         <ImageSection />
       </HStack>
       <MacroNutrientsSection />
@@ -52,43 +65,8 @@ const ImageSection = () => {
     </VStack>
   );
 };
-const ProductDetailsSection = () => {
-  const {
-    productNameSetter,
-    brandNameSetter,
-    packingWeightSetter,
-    vendorAndPriceValuesSetter,
-    vendorAndPriceValues,
-    foodAdditives,
-    foodAdditivesSetter,
-    alergensSetter,
-    alergens,
-  } = useContext(ProductFormContext);
-  return (
-    <VStack w="fit-content" px="16px" spacing="16px">
-      <ProductNameField setter={productNameSetter} />
-      <BrandNameField setter={brandNameSetter} />
-      <PackingWeight setter={packingWeightSetter} />
-      <VendorAndPriceComponent setter={vendorAndPriceValuesSetter} values={vendorAndPriceValues} />
-      <FoodAdditivesComponent setter={foodAdditivesSetter} values={foodAdditives} />
-      <AlergensComponent setter={alergensSetter} values={alergens} />
-    </VStack>
-  );
-};
 
 const MacroNutrientsSection = () => {
-  const {
-    fatsSetter,
-    sfaSetter,
-    mufaSetter,
-    pufaSetter,
-    proteinsSetter,
-    saltSetter,
-    sugarSetter,
-    fiberSetter,
-    carbohydratesSetter,
-  } = useContext(ProductFormContext);
-
   return (
     <Container my="64px" alignSelf={"center"} minW="container.sm">
       <MainHeading>Macro Nutrients</MainHeading>
@@ -96,20 +74,20 @@ const MacroNutrientsSection = () => {
         <HStack spacing="40px" alignItems="start" w="100%">
           <VStack spacing="16px" alignItems="space-between" w="90%">
             <VStack spacing="8px" w="100%">
-              <FatsInputField setter={fatsSetter} />
-              <SfaInputField setter={sfaSetter} />
-              <MufaInputField setter={mufaSetter} />
-              <PufaInputField setter={pufaSetter} />
+              <FatsInputField />
+              <SfaInputField />
+              <MufaInputField />
+              <PufaInputField />
             </VStack>
-            <ProteinsInputField setter={proteinsSetter} />
+            <ProteinsInputField />
           </VStack>
           <VStack spacing="16px" alignItems="space-between" w="100%">
             <VStack spacing="8px" w="100%">
-              <CarbohydratesInputField setter={carbohydratesSetter} />
-              <SugarInputField setter={sugarSetter} />
-              <FiberInputField setter={fiberSetter} />
+              <CarbohydratesInputField />
+              <SugarInputField />
+              <FiberInputField />
             </VStack>
-            <SaltInputField setter={saltSetter} />
+            <SaltInputField />
           </VStack>
         </HStack>
       </VStack>

@@ -1,18 +1,13 @@
 import { HStack, Button, Box, VStack, Container, Text } from "@chakra-ui/react";
-import { FormEvent, useContext } from "react";
+import { FormEvent } from "react";
 import { MdCheck } from "react-icons/md";
-import { Alergens } from "../../../../../../testdata/data";
-import { ProductFormContext } from "../../../../../Contexts/ProductFormContext";
 import * as FormDataFields from "../../../../../Input/Form/FormDataFields";
 import { MainHeading } from "../../../../../Input/Form/Header";
-import { AlergenItem } from "../product/ProductFields";
 import { IngredientsField, MarksComponent, MealNameField, RecipeField } from "./MealFields";
 
 export const MealForm = () => {
-  const { ...ever } = useContext(ProductFormContext);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(ever);
   };
   return (
     <form onSubmit={onSubmit}>
