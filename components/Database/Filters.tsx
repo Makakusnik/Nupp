@@ -17,6 +17,7 @@ import { MdOutlineSearch } from "react-icons/md";
 import * as FormElements from "../../components/Input/Form/FormElements";
 import { Select } from "../Input";
 import { SyntheticEvent, useState } from "react";
+import { handleRemoveFactoryFunction, handleSelectFactoryFunction } from "../Content";
 
 export const FilterBox = () => {
   const filterBg = useColorModeValue("gray.100", "gray.900");
@@ -126,18 +127,8 @@ export const FilterBox = () => {
 
 const CategoriesSelectField = () => {
   const [selectedItems, setSelectedItems] = useState<CategoryType[]>([]);
-  const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value;
-    if (e.currentTarget.selectedIndex === 0 || (selectedItems && selectedItems.some((item) => item.name === value))) {
-      e.currentTarget.selectedIndex = 0;
-      return;
-    }
-    setSelectedItems([categoriesData.filter((item) => item.name === value)[0], ...selectedItems]);
-    e.currentTarget.selectedIndex = 0;
-  };
-  const handleRemove = (e: SyntheticEvent, name: string) => {
-    setSelectedItems(selectedItems.filter((item) => item.name !== name));
-  };
+  const handleSelect = handleSelectFactoryFunction(categoriesData, selectedItems, setSelectedItems!);
+  const handleRemove = handleRemoveFactoryFunction(selectedItems, setSelectedItems!);
 
   return (
     <FormElements.Wrapper isRequired={false}>
@@ -151,9 +142,7 @@ const CategoriesSelectField = () => {
         />
         <FormElements.ContainerSection maxH="132px">
           {selectedItems.map((item) => {
-            return (
-              <CategoryItem key={item.id} name={item.name} onClick={(e) => handleRemove(e, item.name)}></CategoryItem>
-            );
+            return <CategoryItem key={item.id} name={item.name} onClick={(e) => handleRemove(item.id)}></CategoryItem>;
           })}
         </FormElements.ContainerSection>
       </FormElements.MainSection>
