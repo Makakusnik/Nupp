@@ -29,7 +29,7 @@ export const NavigationBar = () => {
       as="nav"
       transition="height 0.5s ease-in-out"
       h={height}
-      p={{ base: "4px 64px", lg: "4px 64px", md: "4px 16px" }}
+      p={{ base: "4px 16px", lg: "4px 64px", md: "4px 16px" }}
       columnGap={"8px"}
       alignContent={"center"}
       justifyContent="space-between"
@@ -49,13 +49,13 @@ export const NavigationBar = () => {
         opacity: backgroundOpacity,
       }}
     >
-      <HStack spacing="48px" zIndex="1">
+      <HStack spacing="48px" justifyContent="space-between" px="0" zIndex="1">
         <Center>
           <NextLink href="/" passHref>
             <Link>NUPP</Link>
           </NextLink>
         </Center>
-        <HStack as="ul" spacing="16px">
+        <HStack display={{ base: "none", sm: "flex" }} as="ul" spacing={{ base: "8px", sm: "8px", md: "16px" }}>
           <li>
             <NavigationLink href="/">Homepage</NavigationLink>
           </li>

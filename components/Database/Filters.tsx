@@ -10,6 +10,7 @@ import {
   TagLabel,
   Text,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { categoriesData, CategoryType } from "../../testdata/data";
 import { RangeSliderWInput } from "../Input/Sliders/RangeSliders";
@@ -34,14 +35,14 @@ export const FilterBox = () => {
       alignItems="center"
       position="relative"
     >
-      <Grid templateColumns="1.25fr 0.75fr repeat(3, 1fr)" gap="16px">
-        <GridItem w="100%" px="8px">
-          <Text marginBottom="16px" fontSize="lg" fontWeight="600">
+      <Stack direction={{ base: "column", md: "row" }}>
+        <VStack w="fit-content" alignItems="start">
+          <Text marginBottom="8px" fontSize="lg" fontWeight="600">
             Categories
           </Text>
           <CategoriesSelectField />
-        </GridItem>
-        <GridItem w="100%" px="8px">
+        </VStack>
+        <VStack>
           <Text fontSize="lg" fontWeight="600">
             Diet Type
           </Text>
@@ -49,8 +50,8 @@ export const FilterBox = () => {
             <Checkbox size="md">Vegan</Checkbox>
             <Checkbox size="md">Checkbox</Checkbox>
           </Stack>
-        </GridItem>
-        <GridItem w="100%" px="8px">
+        </VStack>
+        <VStack>
           <Text display="inline-flex" fontSize="lg" fontWeight="600" alignItems="baseline">
             Costs
           </Text>
@@ -65,7 +66,7 @@ export const FilterBox = () => {
               title="Price"
             ></RangeSliderWInput>
           </Stack>
-        </GridItem>
+        </VStack>
         <GridItem colSpan={2} w="100%" px="8px">
           <Text display="inline-flex" fontSize="lg" fontWeight="600" alignItems="baseline">
             Macro Nutrients
@@ -110,7 +111,7 @@ export const FilterBox = () => {
             </Grid>
           </Stack>
         </GridItem>
-      </Grid>
+      </Stack>
       <Button
         position="absolute"
         bottom="-16px"
@@ -132,7 +133,7 @@ const CategoriesSelectField = () => {
 
   return (
     <FormElements.Wrapper isRequired={false}>
-      <FormElements.MainSection w="100%">
+      <FormElements.MainSection w="24ch">
         <Select
           data={categoriesData}
           name="Categories"
