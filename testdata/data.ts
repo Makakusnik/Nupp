@@ -94,14 +94,27 @@ export const SelectedIngredients: IngredientType[] = [
 export type MarkType = {
   name: string;
   id: string;
-  type: "healthy" | "warning" | "dangerous";
+  iconType: "healthy" | "warning" | "dangerous";
   iconName: CustomIcon;
 };
 
-export const MarkData = [
-  { name: "Healthy Fats", id: "1223", description: "", iconName: "" },
-  { name: "Fiber", id: "113" },
-  { name: "Antioxidants", id: "1232213334" },
+export const MarkData: MarkType[] = [
+  { iconType: "healthy", iconName: "Vitamin", name: "Vitamins", id: "125673" },
+  { iconType: "warning", iconName: "Additives", name: "Additives", id: "12673" },
+  { iconType: "dangerous", iconName: "Additives", name: "Dangerous Additives", id: "1723" },
+  { iconType: "healthy", iconName: "Fiber", name: "Fiber", id: "1203" },
+  { iconType: "healthy", iconName: "Minerals", name: "Minerals", id: "1923" },
+  { iconType: "healthy", iconName: "NoAdditives", name: "No Additives", id: "16723" },
+  { iconType: "healthy", iconName: "NoAlergens", name: "No Alergens", id: "114123" },
+  { iconType: "healthy", iconName: "NoSugar", name: "No Sugar", id: "112312323" },
+  { iconType: "healthy", iconName: "Omega3", name: "Omega 3", id: "11823" },
+  { iconType: "healthy", iconName: "Omega6", name: "Omega 6", id: "11723" },
+  { iconType: "healthy", iconName: "Omega9", name: "Omega 9", id: "11623" },
+  { iconType: "healthy", iconName: "OmegaAll", name: "Healthy Fats", id: "11523" },
+  { iconType: "warning", iconName: "PalmOil", name: "Palm Oil", id: "1423" },
+  { iconType: "warning", iconName: "Sugar", name: "Sugar", id: "13223" },
+  { iconType: "healthy", iconName: "Proteins", name: "High Protein Content", id: "1123" },
+  { iconType: "healthy", iconName: "Vitamin", name: "Vitamin", id: "1223" },
 ];
 
 export const MarkData2 = [
