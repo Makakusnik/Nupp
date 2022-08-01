@@ -1,3 +1,6 @@
+import { Url } from "url";
+import { CustomIcon } from "../components/Custom Icons/Icons";
+
 export interface Data {
   name: string;
   secondaryData: string;
@@ -25,17 +28,32 @@ export var categoriesData: CategoryType[] = [
   { name: "Proteinové Milkshakey", id: "8" },
 ];
 
+export type VendorType = {
+  name: string;
+  id: string;
+  url?: string;
+  residence?: string;
+  image?: any;
+};
+
+export const VendorData: VendorType[] = [
+  { name: "Coop Jednota", id: "1233", url: "www.kokotnakovo.sk", residence: "Bratislava, Pičná 8" },
+  { name: "Lidl", id: "1533", url: "www.lidel.sk", residence: "Bratislava, Pičná 8" },
+  { name: "Fakin Billa", id: "113", url: "www.BillaBillaBilla.sk", residence: "Bratislava, Pičná 8" },
+  { name: "Coop Mountfield", id: "1245" },
+];
+
 export type FoodAdditive = {
   code: string;
   name: string;
-  type: "healthy" | "neutral" | "dangerous";
+  type: "healthy" | "warning" | "dangerous";
   id: string;
 };
 
 export const foodAdditives: FoodAdditive[] = [
   { id: "fadk", code: "E126", name: "Aluminium", type: "dangerous" },
   { id: "faak", code: "E152", name: "Gazorsd oiasdj fojasdfoi jasdoifjdosajfodsj oipazor", type: "healthy" },
-  { id: "fsak", code: "E015", name: "Flumstick", type: "neutral" },
+  { id: "fsak", code: "E015", name: "Flumstick", type: "warning" },
 ];
 
 export type Alergen = {
@@ -76,12 +94,21 @@ export const SelectedIngredients: IngredientType[] = [
 export type MarkType = {
   name: string;
   id: string;
+  type: "healthy" | "warning" | "dangerous";
+  iconName: CustomIcon;
 };
 
 export const MarkData = [
-  { name: "Healthy Fats", id: "1223" },
+  { name: "Healthy Fats", id: "1223", description: "", iconName: "" },
   { name: "Fiber", id: "113" },
-  { name: "Antioxidants", id: "1233334" },
+  { name: "Antioxidants", id: "1232213334" },
+];
+
+export const MarkData2 = [
+  { name: "Healthy Fats2", id: "1223" },
+  { name: "Fiber2", id: "113" },
+  { name: "Antioxidants2", id: "1233334" },
+  { name: "Antioxidants2", id: "123322334" },
 ];
 
 export var data: Data[] = [
