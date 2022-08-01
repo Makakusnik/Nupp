@@ -1,6 +1,16 @@
-import { Box, Tooltip, useColorModeValue } from "@chakra-ui/react";
+import { Box, Icon, Tooltip, useColorModeValue } from "@chakra-ui/react";
 import React, { forwardRef, ReactNode } from "react";
 import { BsQuestion } from "react-icons/bs";
+
+export const IconTooltip = (props: any) => {
+  return (
+    <Tooltip label={props.children} placement="top">
+      <span>
+        <Icon {...props} />
+      </span>
+    </Tooltip>
+  );
+};
 
 export const CustomTooltip = ({ children, marginLeft }: TooltipProps) => {
   return (
@@ -35,3 +45,5 @@ const TooltipVisual = forwardRef<HTMLDivElement, TooltipProps>(
     );
   }
 );
+
+TooltipVisual.displayName = "Tooltip Button";
