@@ -25,6 +25,7 @@ type WrapperProps = {
   direction?: StackDirection;
   placeContent?: string;
   placeItems?: string;
+  isDisabled?: boolean;
 } & ChildrenOnlyProps;
 
 export const Wrapper = ({
@@ -33,9 +34,10 @@ export const Wrapper = ({
   isRequired,
   placeContent = "start space-between",
   placeItems = "start start",
+  isDisabled,
 }: WrapperProps) => {
   return (
-    <FormControl isRequired={isRequired}>
+    <FormControl isRequired={isRequired} isDisabled={isDisabled}>
       <Stack w="100%" placeContent={placeContent} placeItems={placeItems} spacing="0" direction={direction}>
         {children}
       </Stack>
