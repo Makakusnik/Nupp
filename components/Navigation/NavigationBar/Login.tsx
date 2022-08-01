@@ -17,7 +17,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsFillPersonFill, BsGoogle, BsFacebook } from "react-icons/bs";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import * as FormElements from "../../Input/Form/FormElements";

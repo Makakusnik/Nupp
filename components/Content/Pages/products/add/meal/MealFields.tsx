@@ -135,7 +135,7 @@ const SelectedIngredient = ({ name, brandName, weight }: SelectedIngredientProps
           type="number"
           value={weightDef}
           onChange={(e) => {
-            setWeightDef(e.currentTarget.value);
+            setWeightDef(Number(e.currentTarget.value));
           }}
           fontSize="14px"
           textAlign={"end"}

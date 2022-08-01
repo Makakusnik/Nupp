@@ -92,10 +92,10 @@ export const MainSection = ({ children }: ChildrenOnlyProps) => {
   );
 };
 
-export const ImageSection = ({ children, placeContent }: ChildrenOnlyProps & FlexType) => {
+export const ImageSection = (props: any) => {
   return (
-    <GridItem w="40%" position="relative">
-      <Flex placeContent={placeContent}>{children}</Flex>
+    <GridItem w="40%" position="relative" {...props}>
+      <Flex placeContent={props.placeContent}>{props.children}</Flex>
     </GridItem>
   );
 };

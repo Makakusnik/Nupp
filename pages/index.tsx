@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           </Header.Description>
           <Button variant="CTA">Find Diet Plan!</Button>
         </Header.MainSection>
-        <Header.ImageSection>
+        <Header.ImageSection display={{ base: "none", sm: "none", md: "flex", lg: "flex" }}>
           <BlobAnimatedJsx id="svg1" left="155px" top="50%" data={dataBlue}></BlobAnimatedJsx>
           <BlobAnimatedJsx id="svg2" left="26px" top="30%" data={dataPurp}></BlobAnimatedJsx>
           <BlobAnimatedJsx id="svg3" left="130px" top="20%" data={dataRed}></BlobAnimatedJsx>

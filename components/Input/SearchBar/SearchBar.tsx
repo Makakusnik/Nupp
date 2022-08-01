@@ -8,7 +8,10 @@ export const SearchBar = () => {
     e.preventDefault();
   };
   return (
-    <HStack marginRight={["0px", "0px", "8px", "80px", "144px"]}>
+    <HStack
+      display={{ base: "none", sm: "none", md: "flex", lg: "flex" }}
+      marginRight={["0px", "0px", "8px", "80px", "144px"]}
+    >
       <form onSubmit={handleSubmit}>
         <FormElements.Wrapper placeItems="center" isRequired={false} direction="row">
           <VisuallyHidden>

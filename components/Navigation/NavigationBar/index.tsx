@@ -29,7 +29,7 @@ export const NavigationBar = () => {
       as="nav"
       transition="height 0.5s ease-in-out"
       h={height}
-      p={{ lg: "4px 64px", md: "4px 16px" }}
+      p={{ base: "4px 64px", lg: "4px 64px", md: "4px 16px" }}
       columnGap={"8px"}
       alignContent={"center"}
       justifyContent="space-between"
