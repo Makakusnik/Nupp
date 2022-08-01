@@ -25,6 +25,5 @@ export type ChildrenOnlyProps = {
 
 export type ListItemProps = {
   name: string;
-  id: string;
-  onClick: (id: string) => void;
+  onClick: () => void;
 };

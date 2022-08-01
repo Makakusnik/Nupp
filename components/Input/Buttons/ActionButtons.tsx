@@ -3,7 +3,7 @@ import { SyntheticEvent } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 
 export type ButtonProps = {
-  onClick: (e: SyntheticEvent<HTMLButtonElement>) => void;
+  onClick: () => void;
   isDisabled?: boolean;
   ariaLabel: string;
 };
@@ -26,7 +26,7 @@ export const RemoveButton = ({ isDisabled, onClick, ariaLabel }: ButtonProps) =>
       }}
       bg={backgroundColor}
       isDisabled={isDisabled}
-      onClick={onClick}
+      onClick={() => onClick()}
       aria-label={ariaLabel}
       size="xs"
       color={iconColor}

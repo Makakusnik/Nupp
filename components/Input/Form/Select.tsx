@@ -17,7 +17,11 @@ export const Select = forwardRef(
   ) => {
     return (
       <SelectInput name={name} onChange={onChange} placeholder={placeholder} id={id} w={"100%"} ref={ref}>
-        {data && data.map((item) => <option key={item.id}>{item.name}</option>)}
+        {data!.map((item) => (
+          <option data-id={item.id} key={item.id}>
+            {item.name}
+          </option>
+        ))}
       </SelectInput>
     );
   }

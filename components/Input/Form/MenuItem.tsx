@@ -7,18 +7,10 @@ type MarkMenuItemProps = {
   children: string;
   iconType: "healthy" | "warning" | "dangerous";
   iconName: CustomIcon;
-  name: string;
-  id: string;
-  onClick: (
-    e: SyntheticEvent<HTMLButtonElement>,
-    id: string,
-    name: string,
-    iconName: CustomIcon,
-    iconType: "healthy" | "warning" | "dangerous"
-  ) => void;
+  onClick: (e: SyntheticEvent<HTMLButtonElement>) => void;
 };
 
-export const MarkMenuItem = ({ children, iconType, iconName, id, name, onClick }: MarkMenuItemProps) => {
+export const MarkMenuItem = ({ children, iconType, iconName, onClick, ...other }: MarkMenuItemProps) => {
   const [color, setColor] = useState("gray.900");
   const [bgColor, setBgColor] = useState("gray.900");
 
@@ -39,7 +31,7 @@ export const MarkMenuItem = ({ children, iconType, iconName, id, name, onClick }
     }
   }, [iconType]);
   return (
-    <MenuItem minW="30ch" minH="48px" onClick={(e) => onClick(e, id, name, iconName, iconType)}>
+    <MenuItem {...other} minW="30ch" minH="48px" onClick={onClick}>
       <Box
         w="32px"
         h="32px"

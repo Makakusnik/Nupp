@@ -36,7 +36,6 @@ export const ProductForm = () => {
     data.append("FoodAdditives", JSON.stringify(foodAdditives));
     data.append("Alergens", JSON.stringify(alergens));
     data.append("Marks", JSON.stringify(marks));
-    console.log(data.get("Marks"));
   };
   return (
     <form onSubmit={onSubmit}>
