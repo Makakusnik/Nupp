@@ -8,7 +8,7 @@ import {
   Input,
   Checkbox,
 } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 
 interface RangeSliderProps {
   ariaValues: string[];
@@ -17,17 +17,12 @@ interface RangeSliderProps {
   title?: string;
 }
 
-export const RangeSliderWInput = ({
-  ariaValues,
-  defaultValues,
-  placeholderValues,
-  title,
-}: RangeSliderProps) => {
+export const RangeSliderWInput = ({ ariaValues, defaultValues, placeholderValues, title }: RangeSliderProps) => {
   const [min, setMin] = useState<number>(defaultValues[0]);
   const [max, setMax] = useState<number>(defaultValues[1]);
   const [definiteMin, setDefiniteMin] = useState<number>(defaultValues[0]);
   const [definiteMax, setDefiniteMax] = useState<number>(defaultValues[1]);
-
+  const [isChecked, setChecked] = useState<boolean>(false);
   /*
    * Checks if values minimal value is lower than max, and vice versa, then
    * then sets definite values and indefinite values accordingly.
@@ -73,16 +68,24 @@ export const RangeSliderWInput = ({
     setDefiniteMax(min > max ? min : max);
   };
 
+  const handleCheckbuttonChange = (e: SyntheticEvent) => {
+    setChecked(!isChecked);
+  };
+
   return (
     <VStack alignItems="start">
-      <Checkbox size="sm">{title}</Checkbox>
+      <Checkbox isChecked={isChecked} onChange={handleCheckbuttonChange} size="sm" name={title + "Checkbox"}>
+        {title}
+      </Checkbox>
       <RangeSlider
         w="100%"
         colorScheme="green"
         aria-label={ariaValues}
         defaultValue={defaultValues}
         value={[definiteMin, definiteMax]}
+        name={title}
         onChange={handleChangeRangeSlider}
+        isDisabled={!isChecked}
       >
         <RangeSliderTrack>
           <RangeSliderFilledTrack />
@@ -92,7 +95,9 @@ export const RangeSliderWInput = ({
       </RangeSlider>
       <HStack justifyContent="space-between" w="100%">
         <Input
+          isDisabled={!isChecked}
           type="number"
+          name={title + "min"}
           placeholder={placeholderValues[0]}
           size="xs"
           w="40px"
@@ -102,6 +107,8 @@ export const RangeSliderWInput = ({
         ></Input>
         <Input
           type="number"
+          isDisabled={!isChecked}
+          name={title + "max"}
           colorScheme="green"
           placeholder={placeholderValues[1]}
           size="xs"
