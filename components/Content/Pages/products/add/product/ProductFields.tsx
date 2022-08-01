@@ -34,6 +34,7 @@ import { AddButton, RemoveButton } from "../../../../../Input/Buttons/ActionButt
 import { ListItemProps } from "../../../../../../types/Types";
 import { CustomIcon, getIcon } from "../../../../../Custom Icons/Icons";
 import { MarkMenuItem } from "../../../../../Input/Form/MenuItem";
+import { handleRemoveFactoryFunction } from "../../../..";
 
 export type VendorPricePairType = {
   id: string;
@@ -347,12 +348,10 @@ export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
     if (values.some((item) => item.id === id)) {
       return;
     }
-    setter && setter([{ name: name, id: id, iconName: iconName, type: type }, ...values]);
+    setter!([{ name: name, id: id, iconName: iconName, type: type }, ...values]);
   };
 
-  const handleRemoveClick = (e: SyntheticEvent, id: string) => {
-    console.log(values.filter((item) => item.id === id)[0]);
-  };
+  const handleRemove = handleRemoveFactoryFunction<MarkType>(values, setter!);
 
   return (
     <Menu>
@@ -459,7 +458,7 @@ export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
             type={item.type}
             id={item.id}
             key={item.id}
-            onClick={handleRemoveClick}
+            onClick={handleRemove!}
           ></MarkItem>
         ))}
       </Flex>
@@ -470,10 +469,8 @@ export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
 type MarkItemProps = {
   type: "healthy" | "warning" | "dangerous";
   iconName: CustomIcon;
-  name: string;
-  onClick: (e: SyntheticEvent, id: string) => void;
   id: string;
-};
+} & ListItemProps;
 
 const MarkItem = ({ type, name, iconName, id, onClick }: MarkItemProps) => {
   const [color, setColor] = useState("gray.900");
@@ -513,7 +510,7 @@ const MarkItem = ({ type, name, iconName, id, onClick }: MarkItemProps) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      onClick={(e) => onClick(e, id)}
+      onClick={() => onClick(id)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       mr="12px"

@@ -29,15 +29,14 @@ export const ProductForm = () => {
   const [alergens, alergensSetter] = useState<Alergen[]>([]);
   const [marks, marksSetter] = useState<MarkType[]>([]);
 
-  /*
-    Adds VendorPrices, FoodAdditives and Alergens to form data and sends them out.
-  */
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
     data.append("VendorPrices", JSON.stringify(vendorAndPrice));
     data.append("FoodAdditives", JSON.stringify(foodAdditives));
     data.append("Alergens", JSON.stringify(alergens));
+    data.append("Marks", JSON.stringify(marks));
+    console.log(data.get("Marks"));
   };
   return (
     <form onSubmit={onSubmit}>

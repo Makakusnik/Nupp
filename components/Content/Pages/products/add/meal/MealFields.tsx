@@ -1,6 +1,5 @@
 import {
   Box,
-  FormControl,
   FormLabel,
   HStack,
   IconButton,
@@ -13,13 +12,12 @@ import {
 } from "@chakra-ui/react";
 import { SyntheticEvent } from "react";
 import { MdClose } from "react-icons/md";
-import { handleSimpleTextInput, SimpleFieldType } from "../../../..";
 import { data, RecipeData, RecipeDataType, SelectedIngredients } from "../../../../../../testdata/data";
-import { DatabaseTable, SmallDataTable, SmallTableRow } from "../../../../../Database/DatabaseTable";
+import { SmallDataTable, SmallTableRow } from "../../../../../Database/DatabaseTable";
 import { Select } from "../../../../../Input";
 import * as FormElements from "../../../../../Input/Form/FormElements";
 
-export const MealNameField = ({ setter }: SimpleFieldType<string>) => {
+export const MealNameField = () => {
   return (
     <FormElements.Wrapper isRequired>
       <FormElements.LabelSection>
@@ -28,7 +26,7 @@ export const MealNameField = ({ setter }: SimpleFieldType<string>) => {
         </FormLabel>
       </FormElements.LabelSection>
       <FormElements.MainSection>
-        <Input onChange={(e) => handleSimpleTextInput(e, setter)} type="text" id="mealName"></Input>
+        <Input type="text" id="mealName"></Input>
       </FormElements.MainSection>
     </FormElements.Wrapper>
   );
