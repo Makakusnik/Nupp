@@ -10,12 +10,9 @@ import {
   Button,
   MenuButton,
   MenuList,
-  Icon,
   Flex,
   IconButton,
   VisuallyHidden,
-  Container,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { useState, useRef, SyntheticEvent, useEffect } from "react";
 import { MdClose, MdExpandMore } from "react-icons/md";
@@ -26,6 +23,7 @@ import {
   Alergens as alergens,
   VendorData,
   MarkType,
+  MarkData,
 } from "../../../../../../testdata/data";
 import { Select } from "../../../../../Input";
 import { CustomTooltip, IconTooltip } from "../../../../../Misc/Tooltip";
@@ -34,7 +32,8 @@ import { AddButton, RemoveButton } from "../../../../../Input/Buttons/ActionButt
 import { ListItemProps } from "../../../../../../types/Types";
 import { CustomIcon, getIcon } from "../../../../../Custom Icons/Icons";
 import { MarkMenuItem } from "../../../../../Input/Form/MenuItem";
-import { handleRemoveFactoryFunction } from "../../../..";
+import { handleRemoveFactoryFunction, handleSelectFactoryFunction } from "../../../..";
+import { icons } from "react-icons";
 
 export type VendorPricePairType = {
   id: string;
@@ -73,35 +72,26 @@ export const VendorAndPriceComponent = ({ setter, values }: VendorPriceFieldProp
     return true;
   };
 
-  const handleAdd = (e: SyntheticEvent) => {
+  const handleAdd = () => {
     if (!isValid()) {
       setButtonDisabled(true);
       return;
     }
-    if (inputRef.current) inputRef.current.value = Number(inputRef.current?.value).toFixed(2);
-    setter &&
-      values &&
-      setter([
-        {
-          name: selectRef.current?.value || "",
-          price: Number(inputRef.current?.value) || 0,
-          id: VendorData.filter((item) => item.name === selectRef.current?.value)[0].id,
-        },
-        ...values,
-      ]);
-    if (selectRef.current) {
-      selectRef.current.selectedIndex = 0;
-    }
-    if (inputRef.current) {
-      inputRef.current.value = "0.00";
-    }
+    inputRef.current!.value = Number(inputRef.current!.value).toFixed(2);
+    setter!([
+      {
+        name: selectRef.current?.value || "",
+        price: Number(inputRef.current?.value) || 0,
+        id: VendorData.filter((item) => item.name === selectRef.current?.value)[0].id,
+      },
+      ...values,
+    ]);
+    selectRef.current!.selectedIndex = 0;
+    inputRef.current!.value = "0.00";
     setButtonDisabled(true);
   };
 
-  const handleRemove = (id: string) => {
-    console.log(values.filter((item) => item.id === id)[0]);
-    //if (false) setter && values && setter([values.filter((item) => item.id === id)[0], ...values]);
-  };
+  const handleRemove = handleRemoveFactoryFunction(values, setter!);
 
   return (
     <FormElements.Wrapper isRequired={false}>
@@ -133,7 +123,7 @@ export const VendorAndPriceComponent = ({ setter, values }: VendorPriceFieldProp
             />
             <InputRightAddon>$</InputRightAddon>
           </InputGroup>
-          <AddButton onClick={handleAdd} isDisabled={isButtonDisabled} ariaLabel="Add Vendor & Price Pair" />
+          <AddButton onClick={() => handleAdd()} isDisabled={isButtonDisabled} ariaLabel="Add Vendor & Price Pair" />
         </FormElements.InputSection>
         <FormElements.ContainerSection>
           {values &&
@@ -143,8 +133,7 @@ export const VendorAndPriceComponent = ({ setter, values }: VendorPriceFieldProp
                 <FormElements.SelectedItem key={index}>
                   <VendorPriceItem
                     name={item.name}
-                    id={item.id}
-                    onClick={handleRemove}
+                    onClick={() => handleRemove(item.id)}
                     price={item.price}
                   ></VendorPriceItem>
                 </FormElements.SelectedItem>
@@ -161,7 +150,7 @@ type VendorPricePairProps = {
   price: number;
 } & ListItemProps;
 
-const VendorPriceItem = ({ name, price, id, onClick }: VendorPricePairProps) => {
+const VendorPriceItem = ({ name, price, onClick }: VendorPricePairProps) => {
   return (
     <>
       <Box minW="8px" minH="8px" bg={"gray.300"} />
@@ -171,7 +160,7 @@ const VendorPriceItem = ({ name, price, id, onClick }: VendorPricePairProps) => 
       <Text textAlign="end" minW="6ch" maxW="6ch" noOfLines={1}>
         {price + " "} $
       </Text>
-      <RemoveButton ariaLabel="Remove Vendor & Price pair" onClick={() => onClick(id)} />
+      <RemoveButton ariaLabel="Remove Vendor & Price pair" onClick={onClick} />
     </>
   );
 };
@@ -187,23 +176,9 @@ export const FoodAdditivesComponent = ({ values, setter }: FoodAdditivesComponen
     IF - object isn't already there
     IF - Selected index is not equal to 0
   */
-  const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    const value = e.currentTarget.value;
+  const handleSelect = handleSelectFactoryFunction(foodAdditives, values, setter!);
 
-    if (e.currentTarget.selectedIndex === 0 || (values && values.some((item) => item.name === value))) {
-      e.currentTarget.selectedIndex = 0;
-      return;
-    }
-    e.currentTarget.selectedIndex = 0;
-
-    setter && values && setter([foodAdditives.filter((item) => item.name === value)[0], ...values]);
-  };
-
-  const handleRemove = (id: string) => {
-    console.log(values.filter((item) => item.id === id)[0]);
-    //if (false) setter && values && setter([values.filter((item) => item.id === id)[0], ...values]);
-  };
+  const handleRemove = handleRemoveFactoryFunction(values, setter!);
   return (
     <FormElements.Wrapper isRequired={false}>
       <FormElements.LabelSection>
@@ -214,20 +189,18 @@ export const FoodAdditivesComponent = ({ values, setter }: FoodAdditivesComponen
       <FormElements.MainSection>
         <Select id={"foodAdditives"} placeholder={"Pick an Additive"} data={foodAdditives} onChange={handleSelect} />
         <FormElements.ContainerSection>
-          {values &&
-            values.map((item) => {
-              return (
-                <FormElements.SelectedItem key={item.id}>
-                  <FoodAdditiveItem
-                    code={item.code}
-                    name={item.name}
-                    type={item.type}
-                    onClick={handleRemove}
-                    id={item.id}
-                  />
-                </FormElements.SelectedItem>
-              );
-            })}
+          {values!.map((item) => {
+            return (
+              <FormElements.SelectedItem key={item.id}>
+                <FoodAdditiveItem
+                  code={item.code}
+                  name={item.name}
+                  type={item.type}
+                  onClick={() => handleRemove(item.id)}
+                />
+              </FormElements.SelectedItem>
+            );
+          })}
         </FormElements.ContainerSection>
       </FormElements.MainSection>
     </FormElements.Wrapper>
@@ -239,7 +212,7 @@ type FoodAdditiveItemProps = {
   code: string;
 } & ListItemProps;
 
-const FoodAdditiveItem = ({ type, code, name, onClick, id }: FoodAdditiveItemProps) => {
+const FoodAdditiveItem = ({ type, code, name, onClick }: FoodAdditiveItemProps) => {
   const [color, setColor] = useState("gray.900");
   useEffect(() => {
     switch (type) {
@@ -262,7 +235,7 @@ const FoodAdditiveItem = ({ type, code, name, onClick, id }: FoodAdditiveItemPro
       <Text minW="18ch" maxW="18ch" noOfLines={1}>
         {name}
       </Text>
-      <RemoveButton ariaLabel="Remove Food Additive" onClick={() => onClick(id)} />
+      <RemoveButton ariaLabel="Remove Food Additive" onClick={onClick} />
     </>
   );
 };
@@ -273,28 +246,8 @@ type AlergensComponentProps = {
 };
 
 export const AlergensComponent = ({ values, setter }: AlergensComponentProps) => {
-  /*
-    Adds whole Alergen object to values
-    IF - object isn't already there
-    &&
-    IF - Selected index is not equal to 0
-  */
-  const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    const value = e.currentTarget.value;
-
-    if (e.currentTarget.selectedIndex === 0 || (values && values.some((item) => item.name === value))) {
-      e.currentTarget.selectedIndex = 0;
-      return;
-    }
-    e.currentTarget.selectedIndex = 0;
-
-    setter && values && setter([alergens.filter((item) => item.name === value)[0], ...values]);
-  };
-
-  const handleRemove = (id: string) => {
-    console.log(values.filter((item) => item.id === id)[0]);
-  };
+  const handleSelect = handleSelectFactoryFunction(alergens, values, setter!);
+  const handleRemove = handleRemoveFactoryFunction(values, setter!);
   return (
     <FormElements.Wrapper isRequired={false}>
       <FormElements.LabelSection>
@@ -306,10 +259,10 @@ export const AlergensComponent = ({ values, setter }: AlergensComponentProps) =>
         <Select id={"alergens"} placeholder={"Pick an Alergen"} data={alergens} onChange={handleSelect} />
         <FormElements.ContainerSection>
           {values &&
-            values.map((item) => {
+            values!.map((item) => {
               return (
                 <FormElements.SelectedItem key={item.id}>
-                  <AlergenItem name={item.name} id={item.id} onClick={handleRemove}></AlergenItem>
+                  <AlergenItem name={item.name} onClick={() => handleRemove(item.id)} />
                 </FormElements.SelectedItem>
               );
             })}
@@ -319,7 +272,7 @@ export const AlergensComponent = ({ values, setter }: AlergensComponentProps) =>
   );
 };
 
-export const AlergenItem = ({ name, onClick, id }: ListItemProps) => {
+export const AlergenItem = ({ name, onClick }: ListItemProps) => {
   return (
     <>
       <Box w="8px" h="8px" bg={"red.500"} />
@@ -327,7 +280,7 @@ export const AlergenItem = ({ name, onClick, id }: ListItemProps) => {
         {name}
       </Text>
       <Spacer />
-      <RemoveButton ariaLabel={"Remove Alergen"} onClick={() => onClick(id)} />
+      <RemoveButton ariaLabel={"Remove Alergen"} onClick={onClick} />
     </>
   );
 };
@@ -338,20 +291,8 @@ type MarkComponentProps = {
 };
 
 export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
-  const handleSelect = (
-    e: SyntheticEvent<HTMLButtonElement>,
-    id: string,
-    name: string,
-    iconName: CustomIcon,
-    type: "healthy" | "warning" | "dangerous"
-  ) => {
-    if (values.some((item) => item.id === id)) {
-      return;
-    }
-    setter!([{ name: name, id: id, iconName: iconName, type: type }, ...values]);
-  };
-
-  const handleRemove = handleRemoveFactoryFunction<MarkType>(values, setter!);
+  const handleSelect = handleSelectFactoryFunction(MarkData, values, setter!);
+  const handleRemove = handleRemoveFactoryFunction(values, setter!);
 
   return (
     <Menu>
@@ -359,106 +300,29 @@ export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
         Pick Marks
       </MenuButton>
       <MenuList minW="100%" maxH="360px" overflowY="auto">
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Vitamin"} name={"Vitamins"} id={"125673"}>
-          Has Lot of Vitamins
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"warning"}
-          iconName={"Additives"}
-          name={"Additives"}
-          id={"12673"}
-        >
-          Has Additives
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"dangerous"}
-          iconName={"Additives"}
-          name={"Dangerous Additives"}
-          id={"1723"}
-        >
-          Has Dangerous Additives
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Fiber"} name={"Fiber"} id={"1203"}>
-          Has Fiber
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Minerals"} name={"Minerals"} id={"1923"}>
-          Has Minerals
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"healthy"}
-          iconName={"NoAdditives"}
-          name={"No Additives"}
-          id={"16723"}
-        >
-          No Additives
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"healthy"}
-          iconName={"NoAlergens"}
-          name={"No Alergens"}
-          id={"114123"}
-        >
-          No Alergens
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"healthy"}
-          iconName={"NoSugar"}
-          name={"No Sugar"}
-          id={"112312323"}
-        >
-          No Sugar
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Omega3"} name={"Omega 3"} id={"11823"}>
-          Has Healthy Fats: Omega 3
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Omega6"} name={"Omega 6"} id={"11723"}>
-          Has Healthy Fats: Omega 6
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Omega9"} name={"Omega 9"} id={"11623"}>
-          Has Healthy Fats: Omega 9
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"healthy"}
-          iconName={"OmegaAll"}
-          name={"Healthy Fats"}
-          id={"11523"}
-        >
-          Has Healthy Fats
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"warning"} iconName={"PalmOil"} name={"Palm Oil"} id={"1423"}>
-          Contains Palm Oil
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"warning"} iconName={"Sugar"} name={"Sugar"} id={"13223"}>
-          Has lot of Sugar
-        </MarkMenuItem>
-        <MarkMenuItem
-          onClick={handleSelect}
-          iconType={"healthy"}
-          iconName={"Proteins"}
-          name={"High Protein Content"}
-          id={"1123"}
-        >
-          High Protein content
-        </MarkMenuItem>
-        <MarkMenuItem onClick={handleSelect} iconType={"healthy"} iconName={"Vitamin"} name={"Vitamin"} id={"1223"}>
-          Has Lot of Vitamins!
-        </MarkMenuItem>
+        {MarkData.map((item) => {
+          return (
+            <MarkMenuItem
+              key={item.id}
+              onClick={handleSelect}
+              data-id={item.id}
+              iconName={item.iconName}
+              iconType={item.iconType}
+            >
+              {item.name}
+            </MarkMenuItem>
+          );
+        })}
       </MenuList>
       <Flex flexWrap="wrap" maxW="30ch" rowGap="8px" w="100%">
         {values.map((item) => (
           <MarkItem
             name={item.name}
             iconName={item.iconName as CustomIcon}
-            type={item.type}
+            type={item.iconType}
             id={item.id}
             key={item.id}
-            onClick={handleRemove!}
+            onClick={() => handleRemove(item.id)}
           ></MarkItem>
         ))}
       </Flex>
@@ -510,7 +374,7 @@ const MarkItem = ({ type, name, iconName, id, onClick }: MarkItemProps) => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      onClick={() => onClick(id)}
+      onClick={() => onClick()}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       mr="12px"
