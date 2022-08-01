@@ -117,7 +117,7 @@ export const SmallDataTable = ({ children }: ChildrenOnlyProps) => {
     <TableContainer w="100%">
       <Box overflowY="auto" overflowX="hidden" maxHeight="500px">
         <Table variant="striped" size="sm">
-          <Thead bg={bg} zIndex="2" position="sticky" top={0}>
+          <Thead bg={bg} zIndex="1" position="sticky" top={0}>
             <Tr>
               <TableHead title="Name" details="Brand / Recipe Link" />
               <TableHead title="Add" alignCenter={true} />
@@ -134,17 +134,16 @@ export const SmallDataTable = ({ children }: ChildrenOnlyProps) => {
 
 type SmallTableRowProps = {
   ariaLabelIconButton: string;
+  onClick: (e: SyntheticEvent<HTMLButtonElement>, weight: number) => void;
+  id: string;
 };
 
-export const SmallTableRow = ({ item, ariaLabelIconButton }: TableRowProps & SmallTableRowProps) => {
+export const SmallTableRow = ({ item, ariaLabelIconButton, onClick, id }: TableRowProps & SmallTableRowProps) => {
   const [isFieldActive, setActiveField] = useState<boolean>(false);
+  const [weight, setWeight] = useState<number>(0);
 
   const handleClick = () => {
     setActiveField(true);
-  };
-
-  const handleBlur = () => {
-    setActiveField(false);
   };
   return (
     <Tr>
@@ -157,15 +156,27 @@ export const SmallTableRow = ({ item, ariaLabelIconButton }: TableRowProps & Sma
           {isFieldActive ? (
             <>
               <InputGroup size="xs">
-                <Input type="number" w="100%" onBlur={handleBlur} />
+                <Input
+                  type="number"
+                  name="weight"
+                  aria-label="Weight"
+                  w="100%"
+                  onChange={(e: SyntheticEvent<HTMLInputElement>) => {
+                    setWeight(Number(e.currentTarget.value));
+                  }}
+                />
                 <InputRightAddon>g</InputRightAddon>
               </InputGroup>
               <IconButton
                 colorScheme="green"
                 marginLeft="8px"
                 size="xs"
-                onClick={handleClick}
                 aria-label={ariaLabelIconButton}
+                data-id={id}
+                onClick={(e) => {
+                  onClick(e, weight);
+                  setActiveField(false);
+                }}
               >
                 <Box size="16px" as={MdCheck}></Box>
               </IconButton>
