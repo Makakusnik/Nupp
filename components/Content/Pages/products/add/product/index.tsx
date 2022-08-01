@@ -18,20 +18,25 @@ import {
   SaltInputField,
   FoodAdditivesComponent,
   AlergensComponent,
+  VendorPricePairType,
+  MarksComponent,
 } from "./ProductFields";
-import { VendorPricePairType } from "../../../../../../types/Types";
-import { Alergen, FoodAdditive } from "../../../../../../testdata/data";
+import { Alergen, FoodAdditive, MarkType } from "../../../../../../testdata/data";
 
 export const ProductForm = () => {
   const [vendorAndPrice, vendorAndPriceValuesSetter] = useState<VendorPricePairType[]>([]);
   const [foodAdditives, foodAdditivesSetter] = useState<FoodAdditive[]>([]);
   const [alergens, alergensSetter] = useState<Alergen[]>([]);
+  const [marks, marksSetter] = useState<MarkType[]>([]);
 
+  /*
+    Adds VendorPrices, FoodAdditives and Alergens to form data and sends them out.
+  */
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
     data.append("VendorPrices", JSON.stringify(vendorAndPrice));
-    data.append("Food Additives", JSON.stringify(foodAdditives));
+    data.append("FoodAdditives", JSON.stringify(foodAdditives));
     data.append("Alergens", JSON.stringify(alergens));
   };
   return (
@@ -42,6 +47,7 @@ export const ProductForm = () => {
           <ProductNameField />
           <BrandNameField />
           <PackingWeight />
+          <MarksComponent values={marks} setter={marksSetter} />
           <VendorAndPriceComponent setter={vendorAndPriceValuesSetter} values={vendorAndPrice} />
           <FoodAdditivesComponent setter={foodAdditivesSetter} values={foodAdditives} />
           <AlergensComponent setter={alergensSetter} values={alergens} />

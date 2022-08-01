@@ -14,14 +14,7 @@ import {
 import { SyntheticEvent } from "react";
 import { MdClose } from "react-icons/md";
 import { handleSimpleTextInput, SimpleFieldType } from "../../../..";
-import {
-  data,
-  MarkData,
-  MarkType,
-  RecipeData,
-  RecipeDataType,
-  SelectedIngredients,
-} from "../../../../../../testdata/data";
+import { data, RecipeData, RecipeDataType, SelectedIngredients } from "../../../../../../testdata/data";
 import { DatabaseTable, SmallDataTable, SmallTableRow } from "../../../../../Database/DatabaseTable";
 import { Select } from "../../../../../Input";
 import * as FormElements from "../../../../../Input/Form/FormElements";
@@ -68,33 +61,6 @@ export const RecipeField = ({ values, setter }: RecipeComponentProps) => {
   );
 };
 
-type MarkComponentProps = {
-  values: MarkType[];
-  setter: ((values: MarkType[]) => void) | null;
-};
-
-export const MarksComponent = ({ values, setter }: MarkComponentProps) => {
-  const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {};
-  return (
-    <FormElements.Wrapper isRequired={false}>
-      <FormElements.LabelSection>
-        <FormLabel htmlFor="marks" whiteSpace={"nowrap"}>
-          Marks
-        </FormLabel>
-      </FormElements.LabelSection>
-      <FormElements.MainSection>
-        <Select id={"marks"} name={"Marks"} placeholder={"Pick Mark"} data={MarkData} onChange={handleSelect} />
-        <FormElements.ContainerSection>
-          {values &&
-            values.map((item) => {
-              return <FormElements.SelectedItem key={item.id}>{}</FormElements.SelectedItem>;
-            })}
-        </FormElements.ContainerSection>
-      </FormElements.MainSection>
-    </FormElements.Wrapper>
-  );
-};
-
 export const IngredientsField = ({ values, setter }: RecipeComponentProps) => {
   const handleSelect = (e: SyntheticEvent<HTMLSelectElement>) => {};
   return (
@@ -114,7 +80,7 @@ export const IngredientsField = ({ values, setter }: RecipeComponentProps) => {
           <FormElements.ContainerSection>
             {SelectedIngredients.map((item) => {
               return (
-                <FormElements.SelectedItem>
+                <FormElements.SelectedItem key={item.id}>
                   <SelectedIngredient name={item.name} key={item.id} weight={item.weight} brandName={item.brandName} />
                 </FormElements.SelectedItem>
               );

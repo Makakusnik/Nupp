@@ -1,4 +1,4 @@
-import { Container, HStack, useColorModeValue } from "@chakra-ui/react";
+import { Container, HStack, Icon, useColorModeValue } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
 import * as Header from "../../../components/Content/Header";
@@ -6,6 +6,7 @@ import { GiMeal } from "react-icons/gi";
 import { FaAppleAlt } from "react-icons/fa";
 import { BigButton } from "../../../components/Input";
 import { PageContainer } from "../../../components/Misc/Layout";
+import { VitaminIcon } from "../../../components/Custom Icons/Icons";
 
 const ProductsAdd: NextPage = () => {
   return (
@@ -19,8 +20,8 @@ const ProductsAdd: NextPage = () => {
         <Header.MainSection>
           <Header.Title>Add Product or Meal</Header.Title>
           <Header.Description>
-            You can add your meal or product to our database! Don't worry if you don't have all informations, we will
-            supply them later.
+            You can add your meal or product to our database! Don&apos;t worry if you don&apos;t have all informations,
+            we will supply them later.
           </Header.Description>
         </Header.MainSection>
       </Header.SmallHeader>
@@ -39,12 +40,3 @@ const ProductsAdd: NextPage = () => {
 };
 
 export default ProductsAdd;
-
-interface IntroProps {
-  mealButtonHandler: () => void;
-  productButtonHandler: () => void;
-}
-
-const Intro = ({ mealButtonHandler, productButtonHandler }: IntroProps) => {
-  return <></>;
-};

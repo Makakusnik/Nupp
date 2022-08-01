@@ -151,7 +151,9 @@ const CategoriesSelectField = () => {
         />
         <FormElements.ContainerSection maxH="132px">
           {selectedItems.map((item) => {
-            return <CategoryItem name={item.name} onClick={(e) => handleRemove(e, item.name)}></CategoryItem>;
+            return (
+              <CategoryItem key={item.id} name={item.name} onClick={(e) => handleRemove(e, item.name)}></CategoryItem>
+            );
           })}
         </FormElements.ContainerSection>
       </FormElements.MainSection>

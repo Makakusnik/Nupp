@@ -3,7 +3,8 @@ import { FormEvent } from "react";
 import { MdCheck } from "react-icons/md";
 import * as FormDataFields from "../../../../../Input/Form/FormDataFields";
 import { MainHeading } from "../../../../../Input/Form/Header";
-import { IngredientsField, MarksComponent, MealNameField, RecipeField } from "./MealFields";
+import { MarksComponent } from "../product/ProductFields";
+import { IngredientsField, MealNameField, RecipeField } from "./MealFields";
 
 export const MealForm = () => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {

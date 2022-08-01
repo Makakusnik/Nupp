@@ -25,9 +25,7 @@ const AddMeal: NextPage = () => {
         </Header.SmallHeader>
       </Container>
       <Container maxW="container.md">
-        <MealFormContextProvider>
-          <MealForm />
-        </MealFormContextProvider>
+        <MealForm />
       </Container>
     </PageContainer>
   );

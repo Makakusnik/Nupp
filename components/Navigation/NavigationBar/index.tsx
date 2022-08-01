@@ -168,7 +168,7 @@ const LoginWindow = () => {
         <Spacer />
         <Divider />
         <Text>
-          Don't have account yet? <br></br>
+          Don&apos;t have account yet? <br></br>
           <NextLink href="#">
             <Link color="green.300">Create an Account</Link>
           </NextLink>

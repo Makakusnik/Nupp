@@ -96,6 +96,7 @@ export const ContainerSection = ({ children, maxW, minW, maxH, minH }: Container
           overflowY="auto"
           w="100%"
           spacing="8px"
+          py="4px"
           alignItems={"start"}
         >
           {children}
