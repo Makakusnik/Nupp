@@ -10,6 +10,7 @@ export interface Data {
   proteins: number;
   salt: number;
   avgPrice: number;
+  id: string;
 }
 
 export type CategoryType = {
@@ -133,6 +134,7 @@ export var data: Data[] = [
     carbs: 213,
     proteins: 1680,
     salt: 1779,
+    id: "1",
     avgPrice: 0,
   },
   {
@@ -143,6 +145,7 @@ export var data: Data[] = [
     carbs: 44,
     proteins: 1994,
     salt: 1228,
+    id: "12",
     avgPrice: 72,
   },
   {
@@ -153,6 +156,7 @@ export var data: Data[] = [
     carbs: 1462,
     proteins: 780,
     salt: 1024,
+    id: "13",
     avgPrice: 103,
   },
   {
@@ -163,6 +167,7 @@ export var data: Data[] = [
     carbs: 561,
     proteins: 504,
     salt: 321,
+    id: "14",
     avgPrice: 57,
   },
   {
@@ -173,6 +178,7 @@ export var data: Data[] = [
     carbs: 1999,
     proteins: 1527,
     salt: 1076,
+    id: "15",
     avgPrice: 93,
   },
   {
@@ -183,6 +189,7 @@ export var data: Data[] = [
     carbs: 1361,
     proteins: 920,
     salt: 1440,
+    id: "16",
     avgPrice: 88,
   },
   {
@@ -193,6 +200,7 @@ export var data: Data[] = [
     carbs: 1801,
     proteins: 1343,
     salt: 1456,
+    id: "17",
     avgPrice: 68,
   },
   {
@@ -203,6 +211,7 @@ export var data: Data[] = [
     carbs: 1994,
     proteins: 1202,
     salt: 1934,
+    id: "18",
     avgPrice: 43,
   },
   {
@@ -213,6 +222,7 @@ export var data: Data[] = [
     carbs: 1182,
     proteins: 1961,
     salt: 1080,
+    id: "19",
     avgPrice: 103,
   },
   {
@@ -223,6 +233,7 @@ export var data: Data[] = [
     carbs: 1039,
     proteins: 1218,
     salt: 1007,
+    id: "10",
     avgPrice: 107,
   },
   {
@@ -233,6 +244,7 @@ export var data: Data[] = [
     carbs: 1826,
     proteins: 1104,
     salt: 813,
+    id: "112",
     avgPrice: 50,
   },
   {
@@ -243,6 +255,7 @@ export var data: Data[] = [
     carbs: 588,
     proteins: 1234,
     salt: 1767,
+    id: "131",
     avgPrice: 142,
   },
   {
@@ -253,6 +266,7 @@ export var data: Data[] = [
     carbs: 1466,
     proteins: 861,
     salt: 1609,
+    id: "11222",
     avgPrice: 88,
   },
   {
@@ -263,6 +277,7 @@ export var data: Data[] = [
     carbs: 659,
     proteins: 1335,
     salt: 1061,
+    id: "114",
     avgPrice: 117,
   },
   {
@@ -273,6 +288,7 @@ export var data: Data[] = [
     carbs: 1572,
     proteins: 1651,
     salt: 1188,
+    id: "116",
     avgPrice: 67,
   },
   {
@@ -283,6 +299,7 @@ export var data: Data[] = [
     carbs: 389,
     proteins: 1070,
     salt: 931,
+    id: "117",
     avgPrice: 14,
   },
   {
@@ -293,6 +310,7 @@ export var data: Data[] = [
     carbs: 1330,
     proteins: 1222,
     salt: 1079,
+    id: "137",
     avgPrice: 24,
   },
   {
@@ -303,6 +321,7 @@ export var data: Data[] = [
     carbs: 1071,
     proteins: 830,
     salt: 1634,
+    id: "451",
     avgPrice: 6,
   },
   {
@@ -313,6 +332,7 @@ export var data: Data[] = [
     carbs: 704,
     proteins: 445,
     salt: 1084,
+    id: "651",
     avgPrice: 72,
   },
   {
@@ -323,6 +343,7 @@ export var data: Data[] = [
     carbs: 1909,
     proteins: 1432,
     salt: 209,
+    id: "741",
     avgPrice: 77,
   },
   {
@@ -333,6 +354,7 @@ export var data: Data[] = [
     carbs: 510,
     proteins: 1355,
     salt: 1045,
+    id: "1222",
     avgPrice: 55,
   },
   {
@@ -343,6 +365,7 @@ export var data: Data[] = [
     carbs: 1885,
     proteins: 1335,
     salt: 411,
+    id: "1111",
     avgPrice: 142,
   },
   {
@@ -353,6 +376,7 @@ export var data: Data[] = [
     carbs: 1023,
     proteins: 511,
     salt: 1300,
+    id: "2",
     avgPrice: 84,
   },
   {
@@ -363,6 +387,7 @@ export var data: Data[] = [
     carbs: 1027,
     proteins: 1275,
     salt: 1539,
+    id: "3",
     avgPrice: 28,
   },
   {
@@ -373,6 +398,7 @@ export var data: Data[] = [
     carbs: 1142,
     proteins: 22,
     salt: 411,
+    id: "4",
     avgPrice: 87,
   },
 ];

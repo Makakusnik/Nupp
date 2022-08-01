@@ -19,9 +19,9 @@ import {
   FoodAdditivesComponent,
   AlergensComponent,
   VendorPricePairType,
-  MarksComponent,
 } from "./ProductFields";
 import { Alergen, FoodAdditive, MarkType } from "../../../../../../testdata/data";
+import { MarksComponent } from "../../../..";
 
 export const ProductForm = () => {
   const [vendorAndPrice, vendorAndPriceValuesSetter] = useState<VendorPricePairType[]>([]);

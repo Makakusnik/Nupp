@@ -31,7 +31,7 @@ export const MarkMenuItem = ({ children, iconType, iconName, onClick, ...other }
     }
   }, [iconType]);
   return (
-    <MenuItem {...other} minW="30ch" minH="48px" onClick={onClick}>
+    <MenuItem as="li" {...other} minW="30ch" minH="48px" onClick={onClick}>
       <Box
         w="32px"
         h="32px"
