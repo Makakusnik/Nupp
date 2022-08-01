@@ -1,12 +1,19 @@
 import { HStack, Button, Box, VStack, Container, Text } from "@chakra-ui/react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { MdCheck } from "react-icons/md";
+import { MarksComponent } from "../../../..";
+import { FoodAdditive, Alergen, MarkType, IngredientType } from "../../../../../../testdata/data";
 import * as FormDataFields from "../../../../../Input/Form/FormDataFields";
 import { MainHeading } from "../../../../../Input/Form/Header";
-import { MarksComponent } from "../product/ProductFields";
+import { AlergensComponent, FoodAdditivesComponent } from "../product/ProductFields";
 import { IngredientsField, MealNameField, RecipeField } from "./MealFields";
 
 export const MealForm = () => {
+  const [foodAdditives, foodAdditivesSetter] = useState<FoodAdditive[]>([]);
+  const [alergens, alergensSetter] = useState<Alergen[]>([]);
+  const [marks, marksSetter] = useState<MarkType[]>([]);
+  const [ingredients, ingredientsSetter] = useState<IngredientType[]>([]);
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -14,11 +21,17 @@ export const MealForm = () => {
     <form onSubmit={onSubmit}>
       <MainHeading>Meal Details</MainHeading>
       <HStack marginTop="24px" justifyContent="space-around">
-        <MealDetailsSection />
+        <VStack w="fit-content" px="16px" spacing="16px">
+          <MealNameField />
+          <RecipeField />
+          <MarksComponent values={marks} setter={marksSetter} />
+          <FoodAdditivesComponent setter={foodAdditivesSetter} values={foodAdditives} />
+          <AlergensComponent setter={alergensSetter} values={alergens} />
+        </VStack>
         <ImageSection />
       </HStack>
       <HStack marginTop="16px" justifyContent="center">
-        <IngredientsField values={[]} setter={() => {}} />
+        <IngredientsField values={ingredients} setter={ingredientsSetter} />
       </HStack>
       <SummarySection />
       <HStack w="100%" justifyContent="end">
@@ -34,16 +47,6 @@ const ImageSection = () => {
   return (
     <VStack w="30%">
       <Box h="200px" w="200px" bg="red"></Box>
-    </VStack>
-  );
-};
-
-const MealDetailsSection = () => {
-  return (
-    <VStack w="fit-content" px="16px" spacing="16px">
-      <MealNameField setter={() => {}} />
-      <RecipeField values={[]} setter={() => {}} />
-      <MarksComponent values={[]} setter={() => {}} />
     </VStack>
   );
 };
