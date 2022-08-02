@@ -6,11 +6,10 @@ dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+const URL: string = process.env.URL!;
 
 mongoose
-  .connect(
-    "mongodb+srv://marekfodor:eUAzWKqEbASkcIastZ@cluster0.fkjqtp6.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(URL)
   .then(() => {
     app.get("/", (req: Request, res: Response) => {
       res.send("Connected to mongdob");
