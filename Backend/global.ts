@@ -1,9 +1,10 @@
 import { JwtPayload } from "jsonwebtoken";
+import { UserType } from "./Model Schemas/User";
 
 declare global {
   namespace Express {
     interface Request {
-      user: JwtPayload | string | undefined;
+      user: JwtPayload | undefined | UserType;
     }
   }
 }
