@@ -14,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": false,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "ES6",
     "outDir": "./dist/",
     "moduleResolution": "node",
     "resolveJsonModule": true,
