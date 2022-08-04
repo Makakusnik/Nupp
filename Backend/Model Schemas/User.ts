@@ -1,6 +1,7 @@
 import mongoose, { InferSchemaType } from "mongoose";
 
 interface IUser {
+  id: mongoose.Types.ObjectId;
   username: string;
   email: string;
   password: string;
