@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Alergen from "../../Model Schemas/Products & Meals/Alergen";
+import Alergen from "../../../Model Schemas/Products & Meals/Alergen.js";
 
 export const getAlergenByID = async (req: Request, res: Response) => {
   try {

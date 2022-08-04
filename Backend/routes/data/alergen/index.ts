@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { getAlergenByID, getAllAlergens, postAlergen } from "./functions";
+import { getAlergenByID, getAllAlergens, postAlergen } from "./functions.js";
 
 const router = express.Router();
 
