@@ -78,7 +78,7 @@ const LoginWindow = () => {
             </FormLabel>
           </FormElements.LabelSection>
           <FormElements.MainSection w="100%">
-            <Input onChange={(e) => {}} type="email" id="email"></Input>
+            <Input autoComplete="off" onChange={(e) => {}} type="email" id="email"></Input>
           </FormElements.MainSection>
         </FormElements.Wrapper>
         <PasswordField />
