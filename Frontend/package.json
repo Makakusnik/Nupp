@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.9.3",
     "@fontsource/inter": "^4.5.11",
     "@fontsource/lato": "^4.5.8",
+    "axios": "^0.27.2",
     "framer-motion": "^6.3.11",
     "next": "12.1.6",
     "react": "18.2.0",
