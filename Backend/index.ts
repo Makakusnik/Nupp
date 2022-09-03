@@ -41,4 +41,6 @@ mongoose
       res.send("Connected to mongdob");
     });
   })
-  .catch((err) => {});
+  .catch((err) => {
+    console.log(err);
+  });
