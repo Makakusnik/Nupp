@@ -1,0 +1,17 @@
+version: '3.9'
+
+services: 
+  frontend:
+    image: nupp-frontend
+    build: ./Frontend/
+    ports:
+      - 3000:3000
+    volumes:
+      - ./Frontend/:/usr/app/Frontend
+  backend: 
+    image: nupp-backend
+    build: ./Backend/
+    ports:
+      - 8000:8000
+    volumes:
+      - ./Backend/:/usr/app/Backend
