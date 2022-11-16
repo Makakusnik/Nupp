@@ -7,11 +7,7 @@ Goal of my Nupp is to help you spend less, eat healthier, organize and improve y
 ## Current State
 
 **Currently**
-Current State of application and what needs to be done in Frontend and in Backend is in respective folders.
-
-At the moment I am learning redux and docker and frontend will be using redux therefor development of app slowed down pretty much but soon I will pick it back up.
-
-I will share project brief, link to wireframes, link to design and also database schemas here.
+No Time for this project at all. I am full-time frontend from now-on so personal projects have to wait :{.
 
 ### To Do
 
