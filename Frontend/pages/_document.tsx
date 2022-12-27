@@ -6,7 +6,9 @@ export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />

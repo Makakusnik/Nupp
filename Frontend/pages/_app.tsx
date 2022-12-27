@@ -7,9 +7,6 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
       <ChakraProvider theme={theme}>
         <CSSReset />
         <NavigationBar />
