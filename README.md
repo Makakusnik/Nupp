@@ -7,7 +7,7 @@ Goal of my Nupp is to help you spend less, eat healthier, organize and improve y
 ## Current State
 
 **Currently**
-No Time for this project at all. I am full-time frontend from now-on so personal projects have to wait :{.
+Abandoned..again lol.
 
 ### To Do
 
